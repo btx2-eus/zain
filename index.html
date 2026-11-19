@@ -11,6 +11,7 @@
 <style>
 /* ============================================================
    ZAIN — Abendualdiko kutxa (A bertsioa)
+   Bi hizkuntza: EUS / CAS (goian aukeratu, edo ?lang=es helbidean).
    Proiektorerako diseinatua (16:9). Argitaratzeko: fitxategi hau
    webera igo. Probatzeko: helbidearen amaieran ?proba (ate guztiak
    irekita) edo ?gaur=2026-12-16 (egun jakin bat simulatu).
@@ -92,6 +93,18 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .ate-zero{border-color:var(--violet);color:var(--violet);font-weight:600}
 .ate-zero:hover{background:var(--violet);color:#FFFFFF}
 
+/* ---------- Hizkuntza: EUS / CAS ---------- */
+.goiburu-eskuina{display:flex;flex-direction:column;align-items:flex-end;gap:1rem}
+.hizkuntza{display:inline-flex;padding:3px;border:1.5px solid var(--violet);border-radius:999px;background:#FFFFFF}
+.hizkuntza button{min-height:38px;min-width:4rem;padding:0 1rem;border:0;border-radius:999px;background:transparent;color:var(--violet);font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.08em;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.hizkuntza button[aria-pressed="true"]{background:var(--violet);color:#FFFFFF;cursor:default}
+.hizkuntza button[aria-pressed="false"]:hover{background:#EFE8F7}
+.atea-eskuina{display:flex;align-items:center;gap:1.25rem}
+.atea.gaua .hizkuntza{background:transparent;border-color:#5C5470}
+.atea.gaua .hizkuntza button{color:var(--night-mute)}
+.atea.gaua .hizkuntza button[aria-pressed="true"]{background:var(--flame);color:var(--night)}
+.atea.gaua .hizkuntza button[aria-pressed="false"]:hover{background:#2A2536}
+
 /* ---------- Ate irekia ---------- */
 .atea{position:fixed;inset:0;padding:2.5rem 4.5rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;background:var(--paper);overflow:auto}
 .atea[hidden]{display:none}
@@ -160,6 +173,8 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 @media (max-width: 760px){
   .kutxa{height:auto;padding:1.5rem}
   .goiburua{flex-direction:column;align-items:flex-start}
+  .goiburu-eskuina{align-items:flex-start}
+  .atea-goia,.atea-eskuina{flex-wrap:wrap}
   .atea{padding:1.5rem}
   .atea-behea{flex-direction:column;align-items:flex-start}
   .gau-erdia{flex-direction:column;gap:2rem}
@@ -232,9 +247,12 @@ h1,.esaldia,.galdera p,.keinu-burua,.gau-testua .handia{text-wrap:balance}
       <h1>ZAIN</h1>
       <p class="leloa">Zain egon. Zaindu.</p>
     </div>
-    <div class="koroa" aria-label="Abendu-koroa">
-      <div class="kandelak" id="kandelak" aria-hidden="true"></div>
-      <p id="igandea"></p>
+    <div class="goiburu-eskuina">
+      <div id="hizkuntza-lekua"></div>
+      <div class="koroa" id="koroa" role="group" aria-label="Abendu-koroa">
+        <div class="kandelak" id="kandelak" aria-hidden="true"></div>
+        <p id="igandea"></p>
+      </div>
     </div>
   </header>
 
@@ -359,14 +377,166 @@ const ATEAK = {
     galdera: 'Abendualdi honetan, zeren zain egon zara? Iritsi da?' }
 };
 
+/* ============================================================
+   GAZTELANIAZKO BERTSIOA (CAS)
+   ATEAK-en testu berak, gaztelaniaz. Hemen ez dagoena euskarazkotik
+   hartzen da. Euskarazko testu bat aldatzen baduzu, hemen ere aldatu.
+   Bibliako aipuak: Conferencia Episcopal Española-ren Biblia.
+   ============================================================ */
+const ATEAK_ES = {
+  '0': { izena: 'Puerta 0',
+    testua: 'Hoy abrimos la puerta de entrada. Hasta Navidad, en el colegio y en vacaciones, tendremos puertas para pensar.',
+    galdera: '¿Qué esperas de este diciembre, aparte de los regalos?' },
+
+  /* Semana 1 — Estar despiertos */
+  '2026-11-30': { izena: 'Zain',
+    testua: 'Esperando la respuesta a un mensaje. Esperando una nota. Esperando el viernes. Esperando a que llegue alguien. Pasamos medio día esperando. En euskera, «zain egon» es esperar, y «zaindu», cuidar. Vienen de la misma palabra. Mientras esperamos la Navidad, también podemos tomarnos un tiempo para cuidar a quienes tenemos cerca.',
+    galdera: '¿Qué estás esperando estos días? ¿Y quién te está esperando a ti?' },
+  '2026-12-01': { izena: 'El portero',
+    testua: 'Jesús contó una historia: el dueño de una casa se fue de viaje y le dijo al portero: «Velad». El portero no sabía cuándo volvería el dueño: al atardecer, a medianoche, al canto del gallo o al amanecer. Estar despierto no es no dormir. Es darse cuenta.',
+    iturria: 'Evangelio de Marcos (13, 33-35)',
+    galdera: '¿Quién de tu entorno no está como siempre estos últimos días? No digas nombres. Basta con darse cuenta.' },
+  '2026-12-02': { izena: 'Atención',
+    testua: 'En 1942, la filósofa Simone Weil escribió a un amigo que había sido herido en la guerra y se había quedado en cama para siempre: «La atención es la forma más rara y más pura de la generosidad.»',
+    iturria: 'Simone Weil, carta a Joë Bousquet',
+    galdera: '¿Cuándo sentiste por última vez que alguien te escuchaba de verdad? ¿Qué hizo?' },
+  '2026-12-03': { izena: 'El pastor',
+    testua: 'Hoy es el Día del Euskera. En euskera, el pastor, «artzaina», es el «zaina» de las ovejas: el que vela mientras los demás duermen. El euskera también nos ha llegado gracias a quienes lo cuidaron: a quienes siguieron hablándolo en casa cuando estaba arrinconado.',
+    galdera: '¿Qué te ha llegado en casa de generación en generación, porque alguien lo ha cuidado? Una palabra, una receta, una canción…' },
+  '2026-12-04': { izena: 'La vela',
+    burua: 'La primera vela.',
+    testua: 'Se encendió el domingo, en la corona de Adviento. Una vela pequeña no ilumina toda la clase. A quien tiene al lado, sí.',
+    galdera: 'Esta semana, ¿quién ha sido para ti una pequeña vela? ¿Y tú, para quién?',
+    oharra: 'Un minuto en silencio, mirando la vela. Nadie tiene que decir nada en voz alta.' },
+
+  /* Semana 2 — Preparar el camino */
+  '2026-12-07': { etiketa: 'Festivo', izena: 'El desierto',
+    testua: 'Juan el Bautista vivía en el desierto, vestido con piel de camello, y se alimentaba de saltamontes y miel silvestre. Aun así, la gente salía de la ciudad a buscarlo. Llamaba a cambiar de vida, y bautizaba en el río Jordán a quienes acudían a él. No decía lo que la gente quería oír.',
+    iturria: 'Evangelio de Marcos (1, 4-6)',
+    galdera: '¿Quién te dice la verdad, incluso cuando no quieres oírla?' },
+  '2026-12-08': { etiketa: 'Festivo', izena: 'Preparar',
+    testua: 'Hoy es festivo. Los católicos celebran la Inmaculada Concepción: que María, la que iba a ser madre de Jesús, fue concebida sin pecado original. En Adviento recordamos el lugar que María hizo a Jesús en su vida. Preparar no es hacer grandes cosas. Es hacer sitio para que alguien llegue.',
+    galdera: 'Hoy, en casa, ¿qué puedes preparar para otra persona?' },
+  '2026-12-09': { izena: 'Hacerse a un lado',
+    testua: 'Juan era famoso: mucha gente iba a buscarlo. Pero dijo: «Detrás de mí viene el que es más fuerte que yo, y no merezco agacharme para desatarle la correa de sus sandalias.» Desatar las sandalias era tarea de criados. Juan quería dirigir la atención de la gente hacia Jesús.',
+    iturria: 'Evangelio de Marcos (1, 7)',
+    galdera: 'En un trabajo en grupo, ¿qué puedes hacer para que también se escuche la idea de alguien que habla menos?' },
+  '2026-12-10': { izena: 'Como hermanos',
+    testua: 'El 10 de diciembre de 1948, tras la catástrofe de la Segunda Guerra Mundial, las Naciones Unidas aprobaron la Declaración Universal de los Derechos Humanos. Su primer artículo dice que todos los seres humanos «deben comportarse fraternalmente los unos con los otros». Nuestro lema de este curso también recoge esa idea.',
+    iturria: 'Declaración Universal de los Derechos Humanos, artículo 1',
+    galdera: 'Hoy, en esta clase, ¿qué sería comportarse fraternalmente? Piensa en un gesto, no en un principio.' },
+  '2026-12-11': { izena: 'Enderezar',
+    burua: 'El profeta Isaías: «Preparad el camino; que los valles se levanten, que montes y colinas se abajen.»',
+    azalpena: 'Enderezar el camino es quitar los obstáculos para que alguien pueda llegar.',
+    urratsak: ['Coge un trozo de papel.',
+      'Escribe el nombre de una persona y un gesto que te gustaría tener con ella antes de Navidad para arreglar algo. No tiene que ser grande: responder a un mensaje, dar las gracias o pedir perdón.',
+      'No se lo vas a enseñar a nadie. Dóblalo y guárdalo.',
+      'Qué hacer con él lo decides tú.'],
+    segurtasuna: 'El papel es tuyo. Nadie lo va a ver.' },
+
+  /* Semana 3 — Testigos de la luz */
+  '2026-12-14': { izena: 'Gaudete',
+    testua: 'Ayer, domingo, se encendió la tercera vela de la corona: es rosa, no morada. A ese domingo se le llama Gaudete: «alegraos». En mitad de la espera, alegría: la meta aún no ha llegado, pero ya se ve.',
+    galdera: '¿Qué pequeña alegría recuerdas especialmente de este año?' },
+  '2026-12-15': { izena: 'El testigo',
+    testua: 'Algunos pensaban que Juan el Bautista podía ser el Mesías que esperaban, el salvador. Él dijo que no. El evangelio de Juan lo cuenta así: «No era él la luz, sino el que daba testimonio de la luz.» El testigo no brilla: señala la luz. En este relato, la luz es Jesús.',
+    iturria: 'Evangelio de Juan (1, 8)',
+    galdera: '¿Quién te ha ayudado este año a ver algo de otra manera?' },
+  '2026-12-16': { izena: 'El desconocido',
+    testua: 'Desde Jerusalén fueron a preguntarle a Juan: «¿Tú quién eres?». La respuesta fue extraña: «En medio de vosotros hay uno que no conocéis.» Jesús ya estaba allí, entre la gente, como uno más.',
+    iturria: 'Evangelio de Juan (1, 19-26)',
+    galdera: 'En esta clase, ¿con quién no has hablado nunca de verdad? No digas nombres. Piensa qué le preguntarías.' },
+  '2026-12-17': { izena: 'Llevar' },
+  '2026-12-18': { izena: 'Gracias',
+    burua: 'Esta mañana hemos encontrado la clase limpia.',
+    azalpena: 'Pocas veces vemos quién la limpia. Este colegio lo abren y lo cuidan cada día personas a las que muchas veces no vemos.',
+    urratsak: ['Como clase, elegid una persona o un grupo: limpieza, portería, comedor, secretaría, mantenimiento.',
+      'El delegado o la delegada escribirá una nota breve; firmadla todos antes del recreo.',
+      'Dos personas la llevarán hoy.'] },
+
+  /* Semana 4 — Decir sí */
+  '2026-12-21': { etiketa: 'Vacaciones', izena: 'La noche más larga',
+    testua: 'Hoy es el día más corto del año: la luz ha llegado tarde y se irá pronto. A partir de mañana, los días se irán alargando poco a poco. La Navidad está junto a las noches más largas: la luz llega cuando la oscuridad está en su punto más alto.',
+    galdera: 'En los días oscuros, ¿quién o qué es luz para ti?' },
+  '2026-12-22': { etiketa: 'Vacaciones', izena: 'Sí',
+    testua: 'El ángel Gabriel dio una noticia a una chica joven de Nazaret, María: que iba a ser la madre de Jesús. Antes de decir que sí, hizo una pregunta: «¿Cómo será eso?». Después dijo que sí, sin entenderlo todo.',
+    iturria: 'Evangelio de Lucas (1, 26-38)',
+    galdera: '¿A qué te gustaría decir que sí, aunque todavía tengas dudas?' },
+  '2026-12-23': { etiketa: 'Vacaciones', izena: 'Buena noticia',
+    testua: 'Jesús leyó un pasaje de Isaías en la sinagoga de Nazaret: «Me ha enviado para dar la buena noticia a los pobres, para curar los corazones desgarrados.»',
+    iturria: 'Isaías (61, 1); Lucas (4, 16-21)',
+    galdera: '¿Para quién puedes ser hoy una buena noticia? ¿Qué puedes hacer para alegrarle un poco el día?' },
+  '2026-12-24': { etiketa: 'Nochebuena', izena: 'Nochebuena',
+    testua: 'Esta noche, el Olentzero bajará del monte a muchas casas. Los cristianos celebran esta noche el nacimiento de Jesús. Alrededor de la mesa, a veces, cuesta estar de verdad.',
+    galdera: 'Esta noche, en la mesa, ¿a quién vas a dar toda tu atención?' },
+  '2026-12-25': { etiketa: 'Navidad', izena: 'Navidad',
+    testua: 'La espera ha terminado. Para los cristianos, Dios se hizo niño, y lo acostaron en un pesebre porque no había sitio en la posada. Los primeros en saberlo fueron los pastores: los que estaban despiertos de noche.',
+    iturria: 'Evangelio de Lucas (2, 1-20)',
+    galdera: 'En este Adviento, ¿qué has estado esperando? ¿Ha llegado?' }
+};
+
 const ASTEAK = [
-  { zenb: '1. astea', gaia: 'Esna egon', egunak: ['2026-11-30','2026-12-01','2026-12-02','2026-12-03','2026-12-04'] },
-  { zenb: '2. astea', gaia: 'Bidea prestatu', egunak: ['2026-12-07','2026-12-08','2026-12-09','2026-12-10','2026-12-11'] },
-  { zenb: '3. astea', gaia: 'Argiaren lekuko', egunak: ['2026-12-14','2026-12-15','2026-12-16','2026-12-17','2026-12-18'] },
-  { zenb: '4. astea', gaia: 'Bai esan', egunak: ['2026-12-21','2026-12-22','2026-12-23','2026-12-24','2026-12-25'] }
+  { zenb: '1. astea', gaia: 'Esna egon', es: { zenb: 'Semana 1', gaia: 'Estar despiertos' }, egunak: ['2026-11-30','2026-12-01','2026-12-02','2026-12-03','2026-12-04'] },
+  { zenb: '2. astea', gaia: 'Bidea prestatu', es: { zenb: 'Semana 2', gaia: 'Preparar el camino' }, egunak: ['2026-12-07','2026-12-08','2026-12-09','2026-12-10','2026-12-11'] },
+  { zenb: '3. astea', gaia: 'Argiaren lekuko', es: { zenb: 'Semana 3', gaia: 'Testigos de la luz' }, egunak: ['2026-12-14','2026-12-15','2026-12-16','2026-12-17','2026-12-18'] },
+  { zenb: '4. astea', gaia: 'Bai esan', es: { zenb: 'Semana 4', gaia: 'Decir sí' }, egunak: ['2026-12-21','2026-12-22','2026-12-23','2026-12-24','2026-12-25'] }
 ];
 const IGANDEAK = ['2026-11-29','2026-12-06','2026-12-13','2026-12-20'];
-const ASTEGUNAK = ['Igandea','Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala','Larunbata'];
+
+/* ============================================================
+   INTERFAZEKO TESTUAK — EUS / CAS
+   ============================================================ */
+const larriz = s => s.charAt(0).toUpperCase() + s.slice(1);
+const TESTUAK = {
+  eu: {
+    izenburua: 'ZAIN · Abendualdia',
+    aurrea: 'Abendualdia 2026 · DBH eta BTX',
+    leloa: 'Zain egon. Zaindu.',
+    koroa: 'Abendu-koroa',
+    astegunak: ['Igandea','Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala','Larunbata'],
+    hilabeteak: ['urtarrilak','otsailak','martxoak','apirilak','maiatzak','ekainak','uztailak','abuztuak','irailak','urriak','azaroak','abenduak'],
+    egunLuzea: (ag, hil, eg) => ag + ', ' + hil + ' ' + eg,
+    egunLaburra: (hil, eg) => larriz(hil) + ' ' + eg,
+    koroaAurretik: 'Abendualdia azaroaren 29an hasiko da',
+    igandea: n => n + '. igandea',
+    gaur: 'Gaur', ireki: 'Ireki atea', itxita: 'Itxita', gabonak: 'Gabonak', keinua: 'Keinua',
+    hasi: 'Hasi isilunea', martxan: 'Martxan…', isilik: 'Isilik…', amaitua: 'Eskerrik asko.',
+    kutxa: 'Kutxa', zeroMeta: 'Erlijio-saioa · 0. atea', galdera: 'Galdera',
+    jaiOharra: 'Jai eguneko atea: nahi duenarentzat, etxean edo nonahi.',
+    galderaOharra: 'Galdera norberarentzat da. Inork ez du ezer ozen esan behar.',
+    bildumaBurua: n => 'Hiru aste, ' + (['zero','bat','bi','hiru','lau','bost','sei','zazpi','zortzi','bederatzi','hamar','hamaika','hamabi','hamahiru','hamalau','hamabost'][n] || n) + ' galdera.',
+    bildumaAzalpena: 'Ez dituzu denak erantzun behar. Aukeratu bat: gogoan geratu zaizuna, edo oraindik erantzun ez duzuna, eta hartu minutu bat hari berriz heltzeko.',
+    bildumaOharra: 'Ez duzu inori esan behar zein aukeratu duzun.',
+    proba: 'Proba-modua: ate guztiak irekita',
+    pantailaOsoa: 'Pantaila osoa', pantailaIrten: 'Irten pantaila osotik',
+    lehenAtea: 'Lehen atea azaroaren 30ean irekiko da.',
+    zeroBotoia: 'Ireki 0. atea (Erlijio-saioa)'
+  },
+  es: {
+    izenburua: 'ZAIN · Adviento',
+    aurrea: 'Adviento 2026 · ESO y Bachillerato',
+    leloa: 'Esperar. Cuidar.',
+    koroa: 'Corona de Adviento',
+    astegunak: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+    hilabeteak: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+    egunLuzea: (ag, hil, eg) => ag + ', ' + eg + ' de ' + hil,
+    egunLaburra: (hil, eg) => eg + ' de ' + hil,
+    koroaAurretik: 'El Adviento empieza el 29 de noviembre',
+    igandea: n => ['1.er','2.º','3.er','4.º'][n - 1] + ' domingo de Adviento',
+    gaur: 'Hoy', ireki: 'Abrir la puerta', itxita: 'Cerrada', gabonak: 'Navidad', keinua: 'Gesto',
+    hasi: 'Empezar el silencio', martxan: 'En marcha…', isilik: 'En silencio…', amaitua: 'Gracias.',
+    kutxa: 'Calendario', zeroMeta: 'Sesión de Religión · Puerta 0', galdera: 'Pregunta',
+    jaiOharra: 'Puerta de día festivo: para quien quiera, en casa o donde sea.',
+    galderaOharra: 'La pregunta es para cada uno. Nadie tiene que decir nada en voz alta.',
+    bildumaBurua: n => 'Tres semanas, ' + (['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince'][n] || n) + ' preguntas.',
+    bildumaAzalpena: 'No tienes que responderlas todas. Elige una: la que se te ha quedado grabada, o la que aún no has respondido, y tómate un minuto para volver a ella.',
+    bildumaOharra: 'No tienes que decir a nadie cuál has elegido.',
+    proba: 'Modo prueba: todas las puertas abiertas',
+    pantailaOsoa: 'Pantalla completa', pantailaIrten: 'Salir de pantalla completa',
+    lehenAtea: 'La primera puerta se abre el 30 de noviembre.',
+    zeroBotoia: 'Abrir la puerta 0 (sesión de Religión)'
+  }
+};
 
 /* ============================================================
    LOGIKA
@@ -376,6 +546,17 @@ const PROBA = P.has('proba');
 const GAUR = dataZuzena(P.get('gaur')) ? P.get('gaur') : gaurIso();
 // Proba-moduetan (?proba edo ?gaur) ez da ezer gordetzen: benetako egunean dena berri agertzeko.
 const SIMULAZIOA = PROBA || P.has('gaur');
+
+// Hizkuntza: ?lang=es / ?lang=eu helbidean, bestela ordenagailu honetan azken aukera, bestela euskara.
+function hasierakoHizkuntza(){
+  const p = (P.get('lang') || '').toLowerCase();
+  if (['es', 'cas'].includes(p)) return 'es';
+  if (['eu', 'eus'].includes(p)) return 'eu';
+  try { const g = localStorage.getItem('zain-hizkuntza'); if (g === 'eu' || g === 'es') return g; } catch (e) {}
+  return 'eu';
+}
+let HIZK = hasierakoHizkuntza();
+function T(){ return TESTUAK[HIZK]; }
 
 function dataZuzena(s){
   if (!/^\d{4}-\d{2}-\d{2}$/.test(s || '')) return false;
@@ -389,13 +570,15 @@ function gaurIso(){
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
 function data(iso){ const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); }
-const HILABETEAK = ['urtarrilak','otsailak','martxoak','apirilak','maiatzak','ekainak','uztailak','abuztuak','irailak','urriak','azaroak','abenduak'];
-function hilabetea(iso){ return HILABETEAK[data(iso).getMonth()]; }
-function egunLuzea(iso){ const d = data(iso); return ASTEGUNAK[d.getDay()] + ', ' + hilabetea(iso) + ' ' + d.getDate(); }
-function egunLaburra(iso){ const h = hilabetea(iso); return h.charAt(0).toUpperCase() + h.slice(1) + ' ' + data(iso).getDate(); }
-function asteaNon(iso){ return ASTEAK.find(a => a.egunak.includes(iso)); }
+function hilabetea(iso){ return T().hilabeteak[data(iso).getMonth()]; }
+function egunLuzea(iso){ const d = data(iso); return T().egunLuzea(T().astegunak[d.getDay()], hilabetea(iso), d.getDate()); }
+function egunLaburra(iso){ return T().egunLaburra(hilabetea(iso), data(iso).getDate()); }
+function asteaNon(iso){ const a = ASTEAK.find(x => x.egunak.includes(iso)); return a && HIZK === 'es' ? a.es : a; }
 
-function atea(iso){ return ATEAK[iso]; }
+function atea(iso){
+  const a = ATEAK[iso];
+  return HIZK === 'es' && ATEAK_ES[iso] ? Object.assign({}, a, ATEAK_ES[iso]) : a;
+}
 
 let irekiak = new Set();
 try { irekiak = new Set(JSON.parse(localStorage.getItem('zain-irekiak') || '[]')); } catch (e) { irekiak = new Set(); }
@@ -432,13 +615,61 @@ function ikonoa(mota){
   return s;
 }
 
+/* ---------- Hizkuntza-hautatzailea (EUS / CAS) ---------- */
+function hizkuntzaAukera(){
+  const g = el('div', 'hizkuntza');
+  g.setAttribute('role', 'group');
+  g.setAttribute('aria-label', 'Hizkuntza · Idioma');
+  [['eu', 'EUS', 'Euskara'], ['es', 'CAS', 'Castellano']].forEach(([kodea, laburra, osoa]) => {
+    const b = el('button', null, laburra);
+    b.type = 'button'; b.lang = kodea; b.title = osoa; b.dataset.hizk = kodea;
+    b.setAttribute('aria-label', osoa);
+    b.setAttribute('aria-pressed', String(kodea === HIZK));
+    b.addEventListener('click', () => hizkuntzaAldatu(kodea));
+    g.appendChild(b);
+  });
+  return g;
+}
+
+function hizkuntzaAldatu(kodea){
+  if (kodea === HIZK) return;
+  HIZK = kodea;
+  try { localStorage.setItem('zain-hizkuntza', kodea); } catch (e) {}
+  try {
+    // Helbidean ?lang=es gehitu edo kendu, beste parametroak (?proba, ?gaur) bere horretan utzita.
+    const zatiak = location.search.replace(/^\?/, '').split('&').filter(z => z && !/^lang(=|$)/.test(z));
+    if (kodea === 'es') zatiak.push('lang=es');
+    history.replaceState(null, '', location.pathname + (zatiak.length ? '?' + zatiak.join('&') : '') + location.hash);
+  } catch (e) {}
+  if (erlojua) { clearInterval(erlojua); erlojua = null; }
+  testuFinkoak();
+  koroaTestua();
+  oinaTestuak();
+  document.getElementById('sareta').innerHTML = '';
+  sareta();
+  if (!PANTAILA.hidden) irekiBarrua(itzultzeko);
+  const lekua = PANTAILA.hidden ? document.getElementById('kutxa') : PANTAILA;
+  const botoia = lekua.querySelector('.hizkuntza [data-hizk="' + kodea + '"]');
+  if (botoia) botoia.focus({ preventScroll: true });
+}
+
+function testuFinkoak(){
+  document.documentElement.lang = HIZK;
+  document.title = T().izenburua;
+  document.querySelector('.aurrea').textContent = T().aurrea;
+  document.querySelector('.leloa').textContent = T().leloa;
+  document.getElementById('koroa').setAttribute('aria-label', T().koroa);
+  const lekua = document.getElementById('hizkuntza-lekua');
+  lekua.innerHTML = '';
+  lekua.appendChild(hizkuntzaAukera());
+}
+
 /* ---------- Koroa ---------- */
+const PIZTUAK = IGANDEAK.filter(ig => GAUR >= ig).length;
 function koroa(){
   const lekua = document.getElementById('kandelak');
-  let piztuak = 0;
   IGANDEAK.forEach((ig, i) => {
-    const piztua = GAUR >= ig;
-    if (piztua) piztuak = i + 1;
+    const piztua = i < PIZTUAK;
     const k = el('div', 'kandela');
     k.style.setProperty('--k', i);
     k.appendChild(el('div', 'sugarra' + (piztua ? '' : ' itzalia')));
@@ -446,23 +677,26 @@ function koroa(){
     lekua.appendChild(k);
   });
   // Aste berriko kandela: ordenagailu bakoitzean astean behin pizten da (?gaur-ekin beti).
-  if (piztuak > 0) {
-    const igandea = IGANDEAK[piztuak - 1];
+  if (PIZTUAK > 0) {
+    const igandea = IGANDEAK[PIZTUAK - 1];
     let pizteko = true;
     try {
       pizteko = SIMULAZIOA || localStorage.getItem('zain-koroa') !== igandea;
       if (!SIMULAZIOA) localStorage.setItem('zain-koroa', igandea);
     } catch (e) { pizteko = true; }
     if (pizteko) {
-      const berria = lekua.children[piztuak - 1];
+      const berria = lekua.children[PIZTUAK - 1];
       berria.classList.add('berria');
       berria.appendChild(el('div', 'eraztuna'));
       lekua.closest('.koroa').classList.add('berria');
     }
   }
+  koroaTestua();
+}
+function koroaTestua(){
   const testua = document.getElementById('igandea');
-  if (piztuak === 0) testua.textContent = 'Abendualdia azaroaren 29an hasiko da';
-  else testua.innerHTML = piztuak + '. igandea' + (piztuak === 3 ? ' · <em>Gaudete</em>' : '');
+  if (PIZTUAK === 0) testua.textContent = T().koroaAurretik;
+  else testua.innerHTML = T().igandea(PIZTUAK) + (PIZTUAK === 3 ? ' · <em>Gaudete</em>' : '');
 }
 
 /* ---------- Sareta ---------- */
@@ -472,13 +706,14 @@ function sareta(){
   s.classList.toggle('lehena', lehenAldia);
   lehenAldia = false;
   s.appendChild(el('span'));
-  ['Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala'].forEach(a => s.appendChild(el('span', 'astegun', a)));
+  T().astegunak.slice(1, 6).forEach(a => s.appendChild(el('span', 'astegun', a)));
 
   ASTEAK.forEach(astea => {
     const oraingoa = astea.egunak[0] <= GAUR && GAUR <= astea.egunak[4];
+    const izena = HIZK === 'es' ? astea.es : astea;
     const etiketa = el('div', 'astea' + (oraingoa ? ' oraingoa' : ''));
-    etiketa.appendChild(el('span', null, astea.zenb));
-    etiketa.appendChild(el('span', null, astea.gaia));
+    etiketa.appendChild(el('span', null, izena.zenb));
+    etiketa.appendChild(el('span', null, izena.gaia));
     s.appendChild(etiketa);
     astea.egunak.forEach(iso => s.appendChild(gela(iso)));
   });
@@ -499,7 +734,7 @@ function gela(iso){
     if (gabonak) {
       const g = el('div', 'gela gabonak');
       g.appendChild(el('span', 'data', egunLaburra(iso)));
-      const iz = el('span', 'izena'); iz.appendChild(ikonoa('izarra')); iz.appendChild(document.createTextNode('Gabonak'));
+      const iz = el('span', 'izena'); iz.appendChild(ikonoa('izarra')); iz.appendChild(document.createTextNode(T().gabonak));
       g.appendChild(iz);
       return g;
     }
@@ -511,7 +746,7 @@ function gela(iso){
     }
     const g = el('div', 'gela itxia' + (ostirala ? ' ostirala' : ''));
     g.appendChild(el('span', 'data', egunLaburra(iso)));
-    const i = ikonoa('giltza'); i.setAttribute('aria-hidden', 'false'); i.setAttribute('role', 'img'); i.setAttribute('aria-label', 'Itxita');
+    const i = ikonoa('giltza'); i.setAttribute('aria-hidden', 'false'); i.setAttribute('role', 'img'); i.setAttribute('aria-label', T().itxita);
     g.appendChild(i);
     return g;
   }
@@ -520,13 +755,13 @@ function gela(iso){
   b.dataset.iso = iso;
   if (egoera === 'gaur') {
     b.classList.add('gaur');
-    b.appendChild(el('span', 'data', 'Gaur · ' + data(iso).getDate()));
-    const iz = el('span', 'izena', 'Ireki atea'); iz.appendChild(ikonoa('aurrera'));
+    b.appendChild(el('span', 'data', T().gaur + ' · ' + data(iso).getDate()));
+    const iz = el('span', 'izena', T().ireki); iz.appendChild(ikonoa('aurrera'));
     b.appendChild(iz);
   } else if (gabonak) {
     b.classList.add('gabonak');
     b.appendChild(el('span', 'data', egunLaburra(iso)));
-    const iz = el('span', 'izena'); iz.appendChild(ikonoa('izarra')); iz.appendChild(document.createTextNode('Gabonak'));
+    const iz = el('span', 'izena'); iz.appendChild(ikonoa('izarra')); iz.appendChild(document.createTextNode(T().gabonak));
     b.appendChild(iz);
   } else if (a.jaia) {
     b.classList.add('jaia');
@@ -534,7 +769,7 @@ function gela(iso){
     b.appendChild(el('span', 'izena', a.izena));
   } else {
     b.classList.add(ostirala ? 'ostirala' : 'irekia');
-    b.appendChild(el('span', 'data', egunLaburra(iso) + (keinua ? ' · Keinua' : '')));
+    b.appendChild(el('span', 'data', egunLaburra(iso) + (keinua ? ' · ' + T().keinua : '')));
     b.appendChild(el('span', 'izena', a.izena));
   }
   b.addEventListener('click', () => ireki(iso));
@@ -543,14 +778,14 @@ function gela(iso){
 
 /* ---------- Kontagailua ---------- */
 let erlojua = null;
-function kontagailua(segundoak, ilundu, etiketa){
+function kontagailua(segundoak, ilundu){
   const k = el('div', 'kontagailua');
   const denbora = el('span', 'denbora', formatua(segundoak));
-  const botoia = el('button', 'hasi', etiketa || 'Hasi isilunea'); botoia.type = 'button';
+  const botoia = el('button', 'hasi', T().hasi); botoia.type = 'button';
   k.appendChild(denbora); k.appendChild(botoia);
   botoia.addEventListener('click', () => {
     let geratzen = segundoak;
-    const egoera = el('span', 'egoera', etiketa ? 'Martxan…' : 'Isilik…');
+    const egoera = el('span', 'egoera', ilundu ? T().isilik : T().martxan);
     botoia.replaceWith(egoera);
     if (ilundu) PANTAILA.classList.add('isilean');
     const barra = el('div', 'aurrerapena');
@@ -568,7 +803,7 @@ function kontagailua(segundoak, ilundu, etiketa){
         clearInterval(erlojua); erlojua = null;
         PANTAILA.classList.remove('isilean');
         barra.style.opacity = '0';
-        egoera.textContent = 'Eskerrik asko.'; egoera.classList.add('amaitua');
+        egoera.textContent = T().amaitua; egoera.classList.add('amaitua');
       }
     }, 1000);
   });
@@ -615,26 +850,28 @@ function ireki(iso){
 
 function irekiBarrua(iso){
   itzultzeko = iso;
-  const a = iso === '0' ? ATEAK['0'] : atea(iso);
+  const a = atea(iso);
   if (iso !== '0' && iso === GAUR) gorde(iso);
   PANTAILA.innerHTML = '';
   PANTAILA.className = 'atea' + (a.mota === 'kandela' ? ' gaua' : '');
 
   const goia = el('div', 'atea-goia');
   const atzera = el('button', 'atzera'); atzera.type = 'button';
-  atzera.appendChild(ikonoa('atzera')); atzera.appendChild(document.createTextNode('Kutxa'));
+  atzera.appendChild(ikonoa('atzera')); atzera.appendChild(document.createTextNode(T().kutxa));
   atzera.addEventListener('click', itxi);
   goia.appendChild(atzera);
   let meta;
-  if (iso === '0') meta = 'Erlijio-saioa · 0. atea';
+  if (iso === '0') meta = T().zeroMeta;
   else {
     const astea = asteaNon(iso);
     meta = a.jaia ? egunLuzea(iso) + ' · ' + a.etiketa
-      : a.mota === 'bilduma' ? egunLuzea(iso) + ' · ' + asteaNon(iso).zenb + ' · ' + asteaNon(iso).gaia
-      : a.mota === 'keinua' ? egunLuzea(iso) + ' · Keinua'
+      : a.mota === 'keinua' ? egunLuzea(iso) + ' · ' + T().keinua
       : egunLuzea(iso) + ' · ' + astea.zenb + ' · ' + astea.gaia;
   }
-  goia.appendChild(el('p', 'meta', meta));
+  const eskuina = el('div', 'atea-eskuina');
+  eskuina.appendChild(el('p', 'meta', meta));
+  eskuina.appendChild(hizkuntzaAukera());
+  goia.appendChild(eskuina);
   PANTAILA.appendChild(goia);
 
   if (a.mota === 'testua') testuaMarraztu(a);
@@ -654,13 +891,11 @@ function testuaMarraztu(a){
   if (a.iturria) t.appendChild(el('p', 'iturria', a.iturria));
   PANTAILA.appendChild(t);
   const g = el('div', 'galdera');
-  g.appendChild(el('span', null, 'Galdera'));
+  g.appendChild(el('span', null, T().galdera));
   g.appendChild(el('p', null, a.galdera));
   PANTAILA.appendChild(g);
   const behea = el('div', 'atea-behea');
-  behea.appendChild(el('p', 'segurtasuna', a.jaia
-    ? 'Jai eguneko atea: nahi duenarentzat, etxean edo nonahi.'
-    : 'Galdera norberarentzat da. Inork ez du ezer ozen esan behar.'));
+  behea.appendChild(el('p', 'segurtasuna', a.jaia ? T().jaiOharra : T().galderaOharra));
   behea.appendChild(kontagailua(EZARPENAK.isilunea, true));
   PANTAILA.appendChild(behea);
 }
@@ -700,9 +935,8 @@ function bildumaMarraztu(iso){
     .filter(k => k !== '0' && k < iso && ATEAK[k].galdera && !ATEAK[k].jaia)
     .sort();
   const t = el('div', 'testua');
-  const hitzez = ['zero','bat','bi','hiru','lau','bost','sei','zazpi','zortzi','bederatzi','hamar','hamaika','hamabi','hamahiru','hamalau','hamabost'];
-  t.appendChild(el('p', 'esaldia', 'Hiru aste, ' + (hitzez[galderak.length] || galderak.length) + ' galdera.'));
-  t.appendChild(el('p', 'iturria', 'Ez dituzu denak erantzun behar. Aukeratu bat: gogoan geratu zaizuna, edo oraindik erantzun ez duzuna, eta hartu minutu bat hari berriz heltzeko.'));
+  t.appendChild(el('p', 'esaldia', T().bildumaBurua(galderak.length)));
+  t.appendChild(el('p', 'iturria', T().bildumaAzalpena));
   PANTAILA.appendChild(t);
   // 9 galdera arte: 3 zutabe. Gehiago badira: 5 zutabe, proiektorean pantaila batean sartzeko.
   const ul = el('ul', 'bilduma' + (galderak.length > 9 ? ' zabala' : ''));
@@ -710,12 +944,12 @@ function bildumaMarraztu(iso){
     const li = el('li');
     li.style.setProperty('--i', i);
     li.appendChild(el('span', null, egunLaburra(k)));
-    li.appendChild(document.createTextNode(ATEAK[k].galdera));
+    li.appendChild(document.createTextNode(atea(k).galdera));
     ul.appendChild(li);
   });
   PANTAILA.appendChild(ul);
   const behea = el('div', 'atea-behea');
-  behea.appendChild(el('p', 'segurtasuna', 'Ez duzu inori esan behar zein aukeratu duzun.'));
+  behea.appendChild(el('p', 'segurtasuna', T().bildumaOharra));
   behea.appendChild(kontagailua(EZARPENAK.isilunea, true));
   PANTAILA.appendChild(behea);
 }
@@ -739,30 +973,33 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !PANTAILA.
 
 /* ---------- Oina eta abisuak ---------- */
 function oina(){
-  document.getElementById('gaurkoa').textContent = PROBA ? 'Proba-modua: ate guztiak irekita' : 'Gaur: ' + egunLuzea(GAUR);
   const pantaila = document.getElementById('pantaila');
   if (!document.documentElement.requestFullscreen) pantaila.hidden = true;
   pantaila.addEventListener('click', () => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     else document.documentElement.requestFullscreen().catch(() => {});
   });
-  document.addEventListener('fullscreenchange', () => {
-    pantaila.textContent = document.fullscreenElement ? 'Irten pantaila osotik' : 'Pantaila osoa';
-  });
+  document.addEventListener('fullscreenchange', oinaTestuak);
+  oinaTestuak();
+}
+function oinaTestuak(){
+  document.getElementById('gaurkoa').textContent = PROBA ? T().proba : T().gaur + ': ' + egunLuzea(GAUR);
+  document.getElementById('pantaila').textContent = document.fullscreenElement ? T().pantailaIrten : T().pantailaOsoa;
   const oharra = document.getElementById('oharra');
   // 0. atea: azaroaren 30a baino lehen beti eskuragarri (eta proba-moduan ere).
   const aurretik = GAUR < '2026-11-30';
   if (PROBA || aurretik) {
     oharra.hidden = false;
     oharra.textContent = '';
-    if (aurretik && !PROBA) oharra.appendChild(el('span', null, 'Lehen atea azaroaren 30ean irekiko da.'));
-    const b = el('button', 'botoi-txikia ate-zero', 'Ireki 0. atea (Erlijio-saioa)'); b.type = 'button';
+    if (aurretik && !PROBA) oharra.appendChild(el('span', null, T().lehenAtea));
+    const b = el('button', 'botoi-txikia ate-zero', T().zeroBotoia); b.type = 'button';
     b.dataset.iso = '0';
     b.addEventListener('click', () => ireki('0'));
     oharra.appendChild(b);
   }
 }
 
+testuFinkoak();
 koroa();
 sareta();
 oina();
