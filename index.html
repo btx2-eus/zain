@@ -85,6 +85,9 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 
 .oina{display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.9rem;color:var(--mute)}
 .oina p{margin:0}
+.oina-ezkerra{display:flex;align-items:center;gap:1.1rem}
+.logoa{display:block;height:2.3rem;width:auto;opacity:.92}
+.oina-ezkerra p{padding-left:1.1rem;border-left:1px solid var(--line)}
 .oina-eskuina{display:flex;align-items:center;gap:.75rem}
 .botoi-txikia{min-height:44px;padding:0 1rem;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--mute);cursor:pointer}
 .botoi-txikia:hover{border-color:var(--violet);color:var(--violet)}
@@ -261,7 +264,10 @@ h1,.esaldia,.galdera p,.keinu-burua,.gau-testua .handia{text-wrap:balance}
   </div>
 
   <footer class="oina">
-    <p id="gaurkoa"></p>
+    <div class="oina-ezkerra">
+      <img class="logoa" src="lasalle-donostia.webp" alt="La Salle Donostia" width="640" height="290" decoding="async">
+      <p id="gaurkoa"></p>
+    </div>
     <div class="oina-eskuina">
       <span class="oharra" id="oharra" hidden></span>
       <button type="button" class="botoi-txikia" id="pantaila">Pantaila osoa</button>
