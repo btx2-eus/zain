@@ -891,7 +891,11 @@ function ikonoa(izena){
 /* ============================================================
    LOGIKA
    ============================================================ */
-const P = new URLSearchParams(location.search);
+// Helbidean '?' bat baino gehiago badago (adib. ?maila=1-3?proba), '&' bihurtu.
+if (location.search.indexOf('?', 1) > -1) {
+  try { history.replaceState(null, '', location.pathname + '?' + location.search.slice(1).replace(/\?/g, '&') + location.hash); } catch (e) {}
+}
+const P = new URLSearchParams(location.search.slice(1).replace(/\?/g, '&'));
 const PROBA = P.has('proba');
 const GAUR = dataZuzena(P.get('gaur')) ? P.get('gaur') : gaurIso();
 // Proba-moduetan (?proba edo ?gaur) ez da ate irekirik gordetzen: benetako egunean dena berri agertzeko.
@@ -915,7 +919,8 @@ function hasierakoMaila(){
 }
 let HIZK = hasierakoHizkuntza();
 let MAILA = hasierakoMaila();
-const MAILA_GALDETU = MAILA === null;
+// Proba-moduetan (?proba, ?gaur) ez galdetu: 1.–3. hartu, eta goiko hautatzailearekin aldatu.
+const MAILA_GALDETU = MAILA === null && !SIMULAZIOA;
 if (!MAILA) MAILA = 'lh1';
 function T(){ return TESTUAK[HIZK]; }
 
