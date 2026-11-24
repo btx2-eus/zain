@@ -153,6 +153,10 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .esaldia.oso-luzea{font-size:calc(2rem * var(--eskala,1));line-height:1.28}
 .esaldia.luzeena{font-size:calc(1.85rem * var(--eskala,1));line-height:1.3}
 .iturria{font-size:1.2rem;font-weight:700;color:var(--mute)}
+.ardatza{display:flex;flex-direction:column;gap:.25rem;padding:.35rem 0 .4rem 1.1rem;border-left:6px solid var(--star);max-width:64rem}
+.ardatza-burua{font-size:calc(.85rem * var(--eskala,1));font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#7A5200}
+.ardatza p{margin:0;font-size:calc(1.45rem * var(--eskala,1));font-weight:700;font-style:italic;line-height:1.28;text-wrap:pretty}
+.ardatza-iturria{margin-left:.6rem;font-size:.8em;font-style:normal;color:var(--mute);white-space:nowrap}
 .galdera{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.15rem 1.7rem 1.35rem;border-radius:24px;background:var(--card);border:3px solid var(--violet-soft);max-width:68rem}
 .galdera-barrua{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem}
 .galdera p{margin:0;font-family:var(--display);font-size:calc(2.2rem * var(--eskala,1));font-weight:700;line-height:1.12}
@@ -345,6 +349,7 @@ const ATEAK = {
 
   /* 1. astea — Esna egon */
   '2026-11-30': { ikonoa: 'giltza', mota: 'testua', izena: 'Atezainaren begiak',
+    ardatza: '«Zaindu, egon esna, ez baitakizue noiz izango den garaia. (…) Zuei esaten dizuedana, denei esaten dizuet: egon esna!»',
     testua: 'Ebanjelioan, etxeko jaunak atezainari eskatzen dio «esna egoteko», edozein unetan irits daitekeelako. Abendualdia hasi dugu eta Jesus badator; ezin dugu oharkabean pasatzen utzi.',
     iturria: 'Markos 13, 33-37',
     galdera: 'Nola prestatuko dituzu zure begiak eta bihotza aste honetan, Jesusen etorrera oharkabean pasa ez dakizun?' },
@@ -368,6 +373,7 @@ const ATEAK = {
 
   /* 2. astea — Bidea prestatu (7a eta 8a jaiegunak) */
   '2026-12-07': { ikonoa: 'gutuna', mota: 'testua', jaia: true, etiketa: 'Jaieguna', izena: 'Berri onaren hasiera',
+    ardatza: '«Prestatu bidea Jaunari, zuzendu hari bidezidorrak. (…) Nik urez bataiatzen zaituztet, baina berak Espiritu Santuaz bataiatuko zaituzte.»',
     testua: 'Abendualdia bide berri baten hasiera da, eta gu gara berri on hori gure gelara eta etxera eramaten dugun mezulariak.',
     iturria: 'Markos 1, 1-8',
     galdera: 'Nola erakutsiko duzu aste honetan Jesusen etorrera benetako «berri ona» dela zure ingurukoentzat?' },
@@ -395,6 +401,7 @@ const ATEAK = {
 
   /* 3. astea — Argiaren lekuko (18a, azken eskola-eguna) */
   '2026-12-14': { ikonoa: 'irria', mota: 'testua', izena: 'Jainkoak bidalia',
+    ardatza: '«Bera ez zen argia, argiaren testigu baizik. (…) Zuen erdian badago bat zuek ezagutzen ez duzuena.»',
     testua: 'Ebanjelioak dio Joan «Jainkoak bidalia» zela argiaz testigantza emateko. Gu ere gure gelara, familiara eta lagunengana bidaliak gara poza eta argia eramateko.',
     iturria: 'Joan 1, 6-8. 19-28',
     galdera: 'Nola erakutsiko duzu aste honetan poza eta maitasuna zure eguneroko ekintzekin?' },
@@ -420,6 +427,7 @@ const ATEAK = {
 
   /* 4. astea — Bai esan (oporrak) */
   '2026-12-21': { ikonoa: 'hitzak', mota: 'testua', jaia: true, etiketa: 'Oporrak', izena: 'Ez beldurrik izan',
+    ardatza: '«Ez beldurrik izan, Maria, Jainkoak gogoko baitzaitu. (…) Hona hemen Jaunaren mirabea; gerta bekit zuk esan bezala.»',
     testua: 'Aingeruaren hitzek Maria nahastu zuten hasieran, baina aingeruak lasaitu egin zuen: «Ez beldurrik izan». Gauza berri edo zailen aurrean (barkamena eskatzea, laguntzea), beldurra gainditu behar dugu.',
     iturria: 'Lukas 1, 26-38',
     galdera: 'Zerk ematen dizu beldurra edo lotsa? Nola gainditu dezakezu?' },
@@ -452,6 +460,7 @@ const ATEAK_ES = {
 
   /* Semana 1 — Estar despiertos */
   '2026-11-30': { izena: 'Los ojos del portero',
+    ardatza: '«Estad atentos, vigilad, pues no sabéis cuándo es el momento. (…) Lo que os digo a vosotros lo digo a todos: ¡Velad!»',
     testua: 'En el Evangelio, el dueño de la casa le pide al portero que «esté despierto», porque puede llegar en cualquier momento. Hemos empezado el Adviento y Jesús viene; no podemos dejar que pase sin darnos cuenta.',
     iturria: 'Marcos 13, 33-37',
     galdera: '¿Cómo vas a preparar esta semana tus ojos y tu corazón, para que la llegada de Jesús no te pase desapercibida?' },
@@ -475,6 +484,7 @@ const ATEAK_ES = {
 
   /* Semana 2 — Preparar el camino */
   '2026-12-07': { etiketa: 'Festivo', izena: 'El comienzo de la buena noticia',
+    ardatza: '«Preparad el camino del Señor, enderezad sus senderos. (…) Yo os he bautizado con agua, pero él os bautizará con Espíritu Santo.»',
     testua: 'El Adviento es el comienzo de un camino nuevo, y nosotros somos los mensajeros que llevamos esa buena noticia a nuestra clase y a nuestra casa.',
     iturria: 'Marcos 1, 1-8',
     galdera: '¿Cómo vas a mostrar esta semana a quienes te rodean que la llegada de Jesús es una verdadera «buena noticia»?' },
@@ -482,7 +492,7 @@ const ATEAK_ES = {
     testua: 'Juan el Bautista aparece en el desierto, un lugar sin ruido, para escuchar mejor la llamada de Dios. En nuestra vida también hay mucho ruido (pantallas, prisas, gritos), y para preparar el camino necesitamos un poco de silencio.',
     iturria: 'Marcos 1, 1-8',
     galdera: '¿Cuándo puedes tener hoy un rato para estar en silencio y tranquilo? ¿Escucharás la voz de Jesús?' },
-  '2026-12-09': { izena: 'Allanad sus senderos',
+  '2026-12-09': { izena: 'Enderezad sus senderos',
     testua: 'Si en un camino de montaña hay piedras y curvas torcidas, cuesta avanzar. Nuestros enfados, las mentiras, los celos… también ponen obstáculos para que Jesús llegue hasta nosotros.',
     iturria: 'Marcos 1, 1-8',
     galdera: '¿Qué «piedra» o curva torcida (enfado, envidia, desprecio) tienes que quitar hoy del camino de tu clase o de tu casa?' },
@@ -501,6 +511,7 @@ const ATEAK_ES = {
 
   /* Semana 3 — Testigos de la luz */
   '2026-12-14': { izena: 'Enviado por Dios',
+    ardatza: '«No era él la luz, sino el que daba testimonio de la luz. (…) En medio de vosotros hay uno que no conocéis.»',
     testua: 'El Evangelio dice que Juan fue «enviado por Dios» para dar testimonio de la luz. Nosotros también somos enviados a nuestra clase, a nuestra familia y a nuestros amigos para llevar alegría y luz.',
     iturria: 'Juan 1, 6-8. 19-28',
     galdera: '¿Cómo vas a mostrar esta semana alegría y cariño con lo que haces cada día?' },
@@ -525,6 +536,7 @@ const ATEAK_ES = {
 
   /* Semana 4 — Decir sí */
   '2026-12-21': { etiketa: 'Vacaciones', izena: 'No tengas miedo',
+    ardatza: '«No temas, María, porque has encontrado gracia ante Dios. (…) He aquí la esclava del Señor; hágase en mí según tu palabra.»',
     testua: 'Las palabras del ángel desconcertaron a María al principio, pero el ángel la tranquilizó: «No tengas miedo». Ante cosas nuevas o difíciles (pedir perdón, ayudar), tenemos que vencer el miedo.',
     iturria: 'Lucas 1, 26-38',
     galdera: '¿Qué te da miedo o vergüenza? ¿Cómo puedes superarlo?' },
@@ -571,6 +583,7 @@ const TESTUAK = {
     igandea: n => n + '. igandea',
     gaur: 'Gaur', ireki: 'Ireki atea', itxita: 'Itxita', gabonak: 'Gabonak', keinua: 'Keinua',
     hasi: 'Hasi isilunea', martxan: 'Martxan…', isilik: 'Isilik…', begiakItxita: 'Begiak itxita…', amaitua: 'Eskerrik asko.',
+    ardatza: 'Asteko ardatza',
     kutxa: 'Egutegia', zeroMeta: 'Erlijio-saioa · 0. atea',
     etiketak: { galdera: 'Galdera', erronka: 'Erronka', familian: 'Familian' },
     galderaOharra: 'Ez duzu ezer ozen esan behar: pentsatu zure barruan.',
@@ -595,6 +608,7 @@ const TESTUAK = {
     igandea: n => ['1.er','2.º','3.er','4.º'][n - 1] + ' domingo de Adviento',
     gaur: 'Hoy', ireki: 'Abrir la puerta', itxita: 'Cerrada', gabonak: 'Navidad', keinua: 'Gesto',
     hasi: 'Empezar el silencio', martxan: 'En marcha…', isilik: 'En silencio…', begiakItxita: 'Ojos cerrados…', amaitua: 'Gracias.',
+    ardatza: 'Eje de la semana',
     kutxa: 'Calendario', zeroMeta: 'Sesión de Religión · Puerta 0',
     etiketak: { galdera: 'Pregunta', erronka: 'Reto', familian: 'En familia' },
     galderaOharra: 'No tienes que decir nada en voz alta: piénsalo por dentro.',
@@ -1120,8 +1134,17 @@ function oharraTestua(a){
 function testuaMarraztu(a){
   const t = el('div', 'testua');
   t.appendChild(izenburua(a));
+  // Astelehenetan: asteko ardatza (igandeko ebanjelioa), erreferentziarekin.
+  if (a.ardatza) {
+    const ard = el('div', 'ardatza');
+    ard.appendChild(el('span', 'ardatza-burua', T().ardatza));
+    const p = el('p', null, a.ardatza);
+    if (a.iturria) p.appendChild(el('span', 'ardatza-iturria', a.iturria));
+    ard.appendChild(p);
+    t.appendChild(ard);
+  }
   t.appendChild(esaldia(a.testua));
-  if (a.iturria) t.appendChild(el('p', 'iturria', a.iturria));
+  if (a.iturria && !a.ardatza) t.appendChild(el('p', 'iturria', a.iturria));
   PANTAILA.appendChild(t);
   PANTAILA.appendChild(galderaTxartela(a, a.izarrak ? izarLerroa(ASTEAK) : null));
   const behea = el('div', 'atea-behea');
