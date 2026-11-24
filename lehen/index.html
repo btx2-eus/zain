@@ -11,8 +11,8 @@
 <style>
 /* ============================================================
    ZAIN — Abendualdiko egutegia · LEHEN HEZKUNTZA
-   Bi maila (1.–3. eta 4.–6.) eta bi hizkuntza (EUS / CAS), goian.
-   Helbidean ere aukeratu daiteke: ?maila=1-3 edo ?maila=4-6, ?lang=es.
+   Lehen Hezkuntza osorako egutegi bakarra, bi hizkuntzatan (EUS / CAS), goian.
+   Helbidean ere aukeratu daiteke: ?lang=es.
    Proiektorerako diseinatua (16:9). Probatzeko: ?proba (ate guztiak
    irekita) edo ?gaur=2026-12-16 (egun jakin bat simulatu).
    Ate bakoitza irekitzean, asteko izarraren punta bat pizten da.
@@ -121,33 +121,19 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .ate-zero{border-color:var(--violet);color:var(--violet)}
 .ate-zero:hover{background:var(--violet);color:#FFFFFF}
 
-/* ---------- Aukerak: maila eta hizkuntza ---------- */
+/* ---------- Aukerak: hizkuntza ---------- */
 .goiburu-eskuina{display:flex;flex-direction:column;align-items:flex-end;gap:.9rem}
 .aukerak{display:flex;align-items:center;gap:.7rem}
 .txanda{display:inline-flex;padding:3px;border:2px solid var(--violet);border-radius:999px;background:var(--card)}
 .txanda button{min-height:38px;min-width:4rem;padding:0 .95rem;border:0;border-radius:999px;background:transparent;color:var(--violet);font-family:var(--display);font-size:1.02rem;font-weight:800;letter-spacing:.04em;cursor:pointer;transition:background-color .2s ease,color .2s ease}
 .txanda button[aria-pressed="true"]{background:var(--violet);color:#FFFFFF;cursor:default}
 .txanda button[aria-pressed="false"]:hover{background:var(--violet-soft)}
-.txanda.maila{border-color:var(--star-line)}
-.txanda.maila button{color:#7A5200}
-.txanda.maila button[aria-pressed="true"]{background:var(--star);color:#3D2A00}
-.txanda.maila button[aria-pressed="false"]:hover{background:#FFF1C9}
 .atea-eskuina{display:flex;align-items:center;gap:1.1rem}
 .atea.gaua .txanda{background:transparent;border-color:var(--night-line)}
 .atea.gaua .txanda button{color:var(--night-mute)}
 .atea.gaua .txanda button[aria-pressed="true"]{background:var(--flame);color:var(--night)}
 .atea.gaua .txanda button[aria-pressed="false"]:hover{background:#2A2F63}
 
-/* Lehen aldian: maila aukeratu */
-.maila-hautua{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:1.5rem;background:rgba(255,248,238,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.maila-txartela{display:flex;flex-direction:column;align-items:center;gap:1.2rem;padding:2.2rem 3rem 2.6rem;border-radius:28px;background:var(--card);box-shadow:0 30px 60px -28px rgba(35,38,74,.45);text-align:center;max-width:46rem}
-.maila-txartela h2{margin:0;font-family:var(--display);font-size:2.7rem;font-weight:800;line-height:1}
-.maila-txartela p{margin:0;font-size:1.15rem;font-weight:600;color:var(--mute);max-width:32rem}
-.maila-botoiak{display:flex;gap:1.2rem;margin-top:.4rem}
-.maila-botoia{display:flex;flex-direction:column;align-items:center;gap:.3rem;min-width:13rem;padding:1.3rem 1.6rem;border:3px solid var(--violet-soft);border-radius:22px;background:var(--paper);cursor:pointer;transition:border-color .2s ease,transform .2s ease}
-.maila-botoia strong{font-family:var(--display);font-size:2.5rem;font-weight:800;color:var(--violet);line-height:1}
-.maila-botoia span{font-size:1.05rem;font-weight:700;color:var(--mute)}
-.maila-botoia:hover{border-color:var(--violet);transform:translateY(-3px)}
 
 /* ---------- Ate irekia ---------- */
 .atea{position:fixed;inset:0;padding:2.1rem 4.5rem 2.3rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.2rem;background:var(--paper);overflow:auto}
@@ -161,15 +147,15 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .ate-izenburua{display:flex;align-items:center;gap:1.1rem;margin:0}
 .ikur-handia{width:4.4rem;height:4.4rem;border-radius:50%;display:grid;place-items:center;background:var(--violet);color:#FFFFFF;flex:none}
 .ikur-handia svg{width:2.5rem;height:2.5rem}
-.ate-izena{font-family:var(--display);font-size:3.2rem;font-weight:800;line-height:1}
-.esaldia{font-size:2.8rem;font-weight:700;line-height:1.22}
-.esaldia.luzea{font-size:2.35rem;line-height:1.24}
-.esaldia.oso-luzea{font-size:2rem;line-height:1.28}
-.esaldia.luzeena{font-size:1.85rem;line-height:1.3}
+.ate-izena{font-family:var(--display);font-size:calc(3.2rem * var(--eskala,1));font-weight:800;line-height:1}
+.esaldia{font-size:calc(2.8rem * var(--eskala,1));font-weight:700;line-height:1.22}
+.esaldia.luzea{font-size:calc(2.35rem * var(--eskala,1));line-height:1.24}
+.esaldia.oso-luzea{font-size:calc(2rem * var(--eskala,1));line-height:1.28}
+.esaldia.luzeena{font-size:calc(1.85rem * var(--eskala,1));line-height:1.3}
 .iturria{font-size:1.2rem;font-weight:700;color:var(--mute)}
 .galdera{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.15rem 1.7rem 1.35rem;border-radius:24px;background:var(--card);border:3px solid var(--violet-soft);max-width:68rem}
 .galdera-barrua{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem}
-.galdera p{margin:0;font-family:var(--display);font-size:2.2rem;font-weight:700;line-height:1.12}
+.galdera p{margin:0;font-family:var(--display);font-size:calc(2.2rem * var(--eskala,1));font-weight:700;line-height:1.12}
 .txipa{display:inline-flex;align-items:center;padding:.2rem .85rem;border-radius:999px;font-size:.88rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:var(--violet-soft);color:var(--violet)}
 .galdera.erronka{border-color:var(--erronka-soft)}
 .galdera.erronka .txipa{background:var(--erronka-soft);color:var(--erronka)}
@@ -188,30 +174,11 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .egoera.amaitua{color:var(--violet)}
 
 /* Keinua */
-.keinu-burua{font-family:var(--display);font-size:2.3rem;font-weight:700;line-height:1.12;margin:0}
+.keinu-burua{font-family:var(--display);font-size:calc(2.3rem * var(--eskala,1));font-weight:700;line-height:1.12;margin:0}
 .urratsak{list-style:none;counter-reset:u;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem;max-width:64rem}
-.urratsak li{counter-increment:u;display:flex;gap:1rem;align-items:flex-start;font-size:1.8rem;font-weight:700;line-height:1.25}
+.urratsak li{counter-increment:u;display:flex;gap:1rem;align-items:flex-start;font-size:calc(1.8rem * var(--eskala,1));font-weight:700;line-height:1.25}
 .urratsak li::before{content:counter(u);flex:none;width:2.5rem;height:2.5rem;margin-top:-.05rem;border-radius:50%;display:grid;place-items:center;background:var(--star);color:#3D2A00;font-family:var(--display);font-size:1.35rem;font-weight:800}
 
-/* Bilduma (abenduak 17) */
-.bilduma-goia{display:flex;align-items:center;justify-content:space-between;gap:2rem;max-width:68rem}
-.ate-txartelak{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.7rem;max-width:68rem}
-.ate-txartelak li{display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:16px;background:var(--card);border:2px solid var(--line)}
-.ate-txartelak li > div{display:flex;flex-direction:column;gap:.1rem;min-width:0}
-.ate-txartelak .ikurra{flex:none;width:2.1rem;height:2.1rem;border-radius:50%;display:grid;place-items:center;background:var(--violet-soft);color:var(--violet)}
-.ate-txartelak .ikurra svg{width:1.25rem;height:1.25rem}
-.ate-txartelak strong{font-family:var(--display);font-size:1.15rem;font-weight:700;line-height:1.05}
-.ate-txartelak span.data{font-size:.78rem;font-weight:700;color:var(--mute)}
-.ate-txartelak li.ostirala{background:var(--friday);border-color:var(--friday-line)}
-.ate-txartelak li.ostirala .ikurra{background:rgba(255,255,255,.65);color:var(--friday-ink)}
-.ate-txartelak li.ostirala span.data{color:var(--friday-ink)}
-.bilduma{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.8rem 1rem}
-.bilduma li{display:flex;flex-direction:column;gap:.25rem;padding:.55rem .75rem .65rem;border-radius:16px;background:var(--card);border:2px solid var(--line);font-size:.98rem;font-weight:700;line-height:1.24;text-wrap:pretty}
-.bilduma-atea .ikur-handia{width:3.6rem;height:3.6rem}
-.bilduma-atea .ikur-handia svg{width:2.1rem;height:2.1rem}
-.bilduma-atea .ate-izena{font-size:2.7rem}
-.bilduma-atea .esaldia{font-size:2.3rem}
-.bilduma li span{font-size:.78rem;font-weight:700;color:var(--mute)}
 
 /* Ostiraleko kandela: pantaila iluna, kandela erdian */
 .atea.gaua{background:var(--night);color:#FFFFFF}
@@ -246,11 +213,8 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
   .aukerak{flex-wrap:wrap}
   .atea-goia,.atea-eskuina{flex-wrap:wrap}
   .atea{padding:1.5rem}
-  .atea-behea,.galdera,.bilduma-goia{flex-direction:column;align-items:flex-start}
+  .atea-behea,.galdera{flex-direction:column;align-items:flex-start}
   .gau-erdia{flex-direction:column;gap:2rem}
-  .ate-txartelak{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .bilduma{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .maila-botoiak{flex-direction:column}
 }
 
 /* ---------- Tipografia fina ---------- */
@@ -260,8 +224,8 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
 .gela .data,.denbora{font-variant-numeric:tabular-nums}
 
 /* ---------- Isilunea ---------- */
-.atea-goia,.atea .testua,.segurtasuna,.atea .txipa,.atea .izar-lerroa,.atea .ate-txartelak,.atea .bilduma{transition:opacity 1.2s ease}
-.atea.isilean .atea-goia,.atea.isilean .testua,.atea.isilean .segurtasuna,.atea.isilean .txipa,.atea.isilean .izar-lerroa,.atea.isilean .ate-txartelak,.atea.isilean .bilduma{opacity:.28}
+.atea-goia,.atea .testua,.segurtasuna,.atea .txipa,.atea .izar-lerroa{transition:opacity 1.2s ease}
+.atea.isilean .atea-goia,.atea.isilean .testua,.atea.isilean .segurtasuna,.atea.isilean .txipa,.atea.isilean .izar-lerroa{opacity:.28}
 .aurrerapena{position:fixed;left:0;right:0;bottom:0;height:8px;background:var(--star);transform-origin:left center;transform:scaleX(1);transition:opacity .8s ease}
 .atea.gaua .aurrerapena{background:var(--flame)}
 .egoera{transition:color .6s ease}
@@ -302,8 +266,6 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
   .atea.gaua .gau-testua p:nth-child(4){animation-delay:2.6s}
   .atea.gaua .gau-testua .kontagailua{animation:agertu .8s cubic-bezier(.2,.75,.15,1) 3.1s both}
   .denbora.tik{animation:tik .35s ease-out}
-  .atea .bilduma li,.atea .ate-txartelak li{animation:agertu .6s cubic-bezier(.2,.75,.15,1) both;animation-delay:calc(.55s + var(--i,0) * 90ms)}
-  .maila-txartela{animation:agertu .6s cubic-bezier(.2,.75,.15,1) both}
 }
 @keyframes agertu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes jauzi{0%{opacity:0;transform:scale(.4) rotate(-20deg)}100%{opacity:1;transform:none}}
@@ -366,213 +328,116 @@ button.irekia:hover,button.ostirala:hover{border-color:var(--violet)}
    EZARPENAK — aldatu hemen, ez beherago
    ============================================================ */
 const EZARPENAK = {
-  // Isilunearen iraupena segundotan, mailaren arabera.
-  isilunea: { lh1: 30, lh2: 45 }
+  // Isilunearen iraupena segundotan.
+  isilunea: 30
 };
 
 /* ============================================================
-   EDUKIA — ate bakoitzak bi bertsio ditu:
-   lh1 = 1.–3. maila, lh2 = 4.–6. maila.
+   EDUKIA — Lehen Hezkuntza osorako egutegi bakarra.
+   Testuak: Lehen Hezkuntzako pastoraltza (2026-11). Asteko ardatza: igandeko ebanjelioa (B zikloa).
    Galdera motak: galdera, erronka edo familian (bat bakarra ate bakoitzeko).
    Bibliako testuak Elizen arteko Biblian egiaztatu.
    ============================================================ */
 const ATEAK = {
-  '0': { ikonoa: 'atea', mota: 'testua',
-    lh1: { izena: 'Sarrerako atea',
-      testua: 'Gaur ate berezi bat irekiko dugu. Gabonak arte, egunero ate txiki bat izango dugu: istorio bat, galdera bat eta isilune txiki bat. Ate bakoitza irekitzean, izarraren punta bat piztuko da. Astea bukatzean, izar osoa!',
-      galdera: 'Opariez gain, zer gustatzen zaizu gehien Gabonetan?' },
-    lh2: { izena: 'Sarrerako atea',
-      testua: 'Gaur sarrerako atea irekiko dugu. Gabonak arte, eskolan eta oporretan, astegun bakoitzean ate bat izango dugu: istorio labur bat, galdera bat eta isilune bat. Ate bakoitza irekitzean, izarraren punta bat piztuko da. Lau aste, lau izar.',
-      galdera: 'Zer itxaroten duzu abendu honetan, opariez gain?' } },
+  '0': { ikonoa: 'atea', mota: 'testua', izena: 'Sarrerako atea',
+    testua: 'Gaur ate berezi bat irekiko dugu. Gabonak arte, egunero ate txiki bat izango dugu: istorio bat, galdera bat eta isilune txiki bat. Ate bakoitza irekitzean, izarraren punta bat piztuko da. Astea bukatzean, izar osoa!',
+    galdera: 'Opariez gain, zer gustatzen zaizu gehien Gabonetan?' },
 
   /* 1. astea — Esna egon */
-  '2026-11-30': { ikonoa: 'hondarra', mota: 'testua',
-    lh1: { izena: 'Zain',
-      testua: 'Abendualdia Gabonen zain egoteko denbora da. Euskaraz, «zain» eta «zaindu» hitz beretik datoz. Gabonen zain gauden bitartean, ingurukoak zaindu ditzakegu: lagunak, etxekoak, gelakideak…',
-      galdera: 'Nor zaindu dezakezu gaur? Nola?' },
-    lh2: { izena: 'Zain',
-      testua: 'Mezu baten zain, ostiralaren zain, Gabonen zain… Egunean askotan egoten gara zain. Euskaraz, «zain egon» eta «zaindu» hitz beretik datoz: itxarotea eta zaintzea. Abendualdian Gabonen zain gaude, eta itxaron bitartean ingurukoak zaintzeko aukera dugu.',
-      galdera: 'Zeren zain zaude egun hauetan? Eta zu, nor zaindu dezakezu bitartean?' } },
-  '2026-12-01': { ikonoa: 'giltza', mota: 'testua',
-    lh1: { izena: 'Atezaina',
-      testua: 'Jesusek istorio bat kontatu zuen. Etxeko jabea bidaiara joan zen, eta atezainari esan zion: «Erne egon!». Atezainak ez zekien jabea noiz itzuliko zen. Horregatik, adi-adi egon zen, begiak zabalik.',
-      iturria: 'Markos 13, 33-35',
-      erronka: 'Gaur atezaina izango zara: begiak zabalik, konturatu norbaitek laguntza behar duen.' },
-    lh2: { izena: 'Atezaina',
-      testua: 'Jesusek kontakizun bat egin zuen: etxeko jabea bidaiara joan zen, eta atezainari esan zion: «Erne egon». Atezainak ez zekien jabea noiz itzuliko zen: arratsean, gauerdian edo goizaldean. Esna egotea ez da lo ez egitea. Konturatzea da.',
-      iturria: 'Markos 13, 33-35',
-      galdera: 'Noiz konturatu zara azkenekoz norbaitek laguntza behar zuela? Zer egin zenuen?' } },
-  '2026-12-02': { ikonoa: 'belarria', mota: 'testua',
-    lh1: { izena: 'Entzun',
-      testua: 'Batzuetan, norbaitek zerbait kontatzen digu, eta guk beste zerbaitetan pentsatzen dugu. Benetan entzutea opari bat da: begietara begiratu, isilik egon eta galdetu: «Eta gero?».',
-      erronka: 'Nori emango diozu gaur opari hori: benetan entzutea?' },
-    lh2: { izena: 'Arreta',
-      testua: 'Simone Weil filosofoak idatzi zuen arreta dela eskuzabaltasunaren formarik bakanena eta garbiena. Hau da: norbaiti benetan entzutea opari handia da. Mugikorra utzi, begietara begiratu eta itxaron: hori ere zaintzea da.',
-      iturria: 'Simone Weil, Joë Bousquet-i gutuna, 1942',
-      galdera: 'Noiz sentitu duzu azkenekoz norbaitek benetan entzun dizula? Zer egin zuen?' } },
-  '2026-12-03': { ikonoa: 'ardia', mota: 'testua',
-    lh1: { izena: 'Artzaina',
-      testua: 'Gaur Euskararen Eguna da. Euskaraz, artzaina ardien zaina da: ardiak zaintzen dituena. Euskara ere zaindu egin dute askok, urte askoan etxean eta kalean hitz eginez. Orain gu gara zaintzaileak.',
-      galdera: 'Zein da euskarazko zure hitzik gustukoena?' },
-    lh2: { izena: 'Artzaina',
-      testua: 'Gaur Euskararen Eguna da. Euskaraz, artzaina ardien zaina da: besteak lo daudenean esna dagoena. Euskara ere zaintzaileei esker iritsi zaigu: baztertuta egon zenean ere, etxean hitz egiten jarraitu zutenei esker. Orain gu ere zaintzaileak gara.',
-      galdera: 'Zer iritsi zaizu etxean belaunaldiz belaunaldi? Hitz bat, errezeta bat, kanta bat, joko bat…' } },
-  '2026-12-04': { ikonoa: 'kandela', mota: 'kandela',
-    lh1: { izena: 'Kandela', burua: 'Lehen kandela.',
-      testua: 'Igandean, abendu-koroako lehen kandela piztu zen. Kandela txiki bat da, baina ondoan dagoenari argia ematen dio.',
-      galdera: 'Nor izan da zuretzat kandela txiki bat aste honetan?',
-      oharra: 'Itxi begiak. Arnasa hartu hiru aldiz, poliki.' },
-    lh2: { izena: 'Kandela', burua: 'Lehen kandela.',
-      testua: 'Igandean piztu zen, abendu-koroan. Kandela txiki batek ez du gela osoa argitzen. Ondoan duena, bai.',
-      galdera: 'Aste honetan, nor izan da zuretzat kandela txiki bat? Eta zu, norentzat?',
-      oharra: 'Isilik, kandelari begira. Inork ez du ezer ozen esan behar.' } },
+  '2026-11-30': { ikonoa: 'giltza', mota: 'testua', izena: 'Atezainaren begiak',
+    testua: 'Ebanjelioan, etxeko jaunak atezainari eskatzen dio «esna egoteko», edozein unetan irits daitekeelako. Abendualdia hasi dugu eta Jesus badator; ezin dugu oharkabean pasatzen utzi.',
+    iturria: 'Markos 13, 33-37',
+    galdera: 'Nola prestatuko dituzu zure begiak eta bihotza aste honetan, Jesusen etorrera oharkabean pasa ez dakizun?' },
+  '2026-12-01': { ikonoa: 'ilargia', mota: 'testua', izena: 'Ez zaitez lokartu',
+    testua: 'Batzuetan ohiturak, pantailak edo presak «lokartu» egiten gaituzte, eta ez gara konturatzen gure ondoan norbait triste edo bakarrik dagoela. Jesus pertsona horiengan ere badator.',
+    iturria: 'Markos 13, 33-37',
+    galdera: 'Zerk «lokartzen» zaitu gehien egunerokoan, zure inguruan gertatzen denaz ez jabetzeko?' },
+  '2026-12-02': { ikonoa: 'hondarra', mota: 'testua', izena: 'Iluntzean, gauerdian, goizean',
+    testua: 'Jesusek dio ez dakigula zein ordutan etorriko den. Ez dugu Gabon eguna iritsi arte itxaron behar bihotza zabaltzeko; gaur bertan, edozein momentutan, ager daiteke ongia egiteko aukera.',
+    iturria: 'Markos 13, 33-37',
+    galdera: 'Egoten al zara adi eguneko edozein unetan sortzen diren maitasun-keinu txikiei? Zeintzuk dira gaur jaso dituzun keinu txikiak?' },
+  '2026-12-03': { ikonoa: 'etxea', mota: 'testua', izena: 'Zaindu etxea',
+    testua: 'Jaunak bidaia egiten duenean, etxea zerbitzarien esku uzten du, itzultzean dena txukun eta bizirik aurkitzeko. Gure gela eta familia dira zaindu behar dugun etxe hori.',
+    iturria: 'Markos 13, 33-37',
+    galdera: 'Nola zaintzen ari zara aste honetan zure gela eta zure etxekoak?' },
+  '2026-12-04': { ikonoa: 'kandela', mota: 'kandela', izena: 'Kandela',
+    burua: 'Lehen kandela.',
+    testua: 'Igandean, abendu-koroako lehen kandela piztu zen. Kandela txiki bat da, baina ondoan dagoenari argia ematen dio.',
+    galdera: 'Nor izan da zuretzat kandela txiki bat aste honetan?',
+    oharra: 'Itxi begiak. Arnasa hartu hiru aldiz, poliki.' },
 
-  /* 2. astea — Bidea prestatu (7a eta 8a jaiegunak: familian) */
-  '2026-12-07': { ikonoa: 'basamortua', mota: 'testua', jaia: true, etiketa: 'Jaieguna',
-    lh1: { izena: 'Basamortua',
-      testua: 'Joan Bataiatzailea basamortuan bizi zen. Gamelu-ilezko jantziak zituen, eta matxinsaltoak eta basa-eztia jaten zituen! Jende asko joaten zen haren bila. Joanek esaten zien: «Prestatu bidea: norbait berezia dator».',
-      iturria: 'Markos 1, 4-7',
-      familian: 'Zer egin dezakegu etxean, elkarrekin, Gabonak prestatzeko?' },
-    lh2: { izena: 'Basamortua',
-      testua: 'Joan Bataiatzailea basamortuan bizi zen, gamelu-ilezko jantziekin, matxinsaltoak eta basa-eztia janez. Hala ere, jendea hiritik irteten zen haren bila. Bizimodua aldatzeko deia egiten zuen, eta Jordan ibaian bataiatzen zituen. Ez zuen esaten jendeak entzun nahi zuena.',
-      iturria: 'Markos 1, 4-6',
-      galdera: 'Nork esaten dizu egia, entzun nahi ez duzunean ere?' } },
-  '2026-12-08': { ikonoa: 'etxea', mota: 'testua', jaia: true, etiketa: 'Jaieguna',
-    lh1: { izena: 'Prestatu',
-      testua: 'Gaur jaieguna da: Sortzez Garbiaren eguna. Egun honetan Maria ospatzen da, Jesusen ama. Mariak bere bizitzan lekua egin zion Jesusi. Norbait etxera etortzen denean, guk ere lekua prestatzen diogu.',
-      familian: 'Zer prestatu dezakezu gaur etxean beste norbaitentzat?' },
-    lh2: { izena: 'Prestatu',
-      testua: 'Gaur jaieguna da. Katolikoek Sortzez Garbiaren jaia ospatzen dute: Maria, Jesusen ama izango zena, jatorrizko bekaturik gabe sortu zela. Abendualdian, Mariak Jesusi bere bizitzan egin zion lekua gogoratzen dugu. Prestatzea ez da gauza handiak egitea: norbait iristeko lekua egitea da.',
-      galdera: 'Gaur, etxean, zer prestatu dezakezu beste norbaitentzat?' } },
-  '2026-12-09': { ikonoa: 'alboratu', mota: 'testua',
-    lh1: { izena: 'Zu lehenago',
-      testua: 'Joan oso ezaguna zen: jende asko joaten zen bera entzutera. Baina Joanek esan zuen: «Nire atzetik dator ni baino indartsuagoa». Joanek ez zuen lehena izan nahi. Jendeak Jesus ezagutzea nahi zuen.',
-      iturria: 'Markos 1, 7',
-      erronka: 'Gaur, ilaran edo jolasean, utzi beste bati lehena izaten.' },
-    lh2: { izena: 'Alboratu',
-      testua: 'Joan ospetsua zen: jendetza joaten zen haren bila. Baina esan zuen: «Ni baino indartsuagoa dator atzetik; ni ez naiz duin makurtu eta haren oinetakoen lokarria askatzeko.» Sandaliak askatzea morroien lana zen. Joanek Jesusengana bideratu nahi zuen jendearen arreta.',
-      iturria: 'Markos 1, 7',
-      galdera: 'Talde-lanean, zer egin dezakezu gutxi hitz egiten duen norbaiten ideia ere entzun dadin?' } },
-  '2026-12-10': { ikonoa: 'senideak', mota: 'testua',
-    lh1: { izena: 'Senideak bezala',
-      testua: 'Gaur Giza Eskubideen Eguna da. Duela urte asko, herrialde askok elkarrekin idatzi zuten: pertsona guztiok eskubide berberak ditugu, eta senideak bezala tratatu behar dugu elkar.',
-      erronka: 'Gaur, zer keinu egingo duzu gelakide bat ondo senti dadin?' },
-    lh2: { izena: 'Senide legez',
-      testua: '1948ko abenduaren 10ean, gerra handi baten ondoren, Nazio Batuek Giza Eskubideen Aldarrikapena onartu zuten. Lehen artikuluak dio gizon-emakume guztiek «elkarren artean senide legez jokatu beharra dute». Gure aurtengo goiburuak ere ideia hori jasotzen du.',
-      iturria: 'Giza Eskubideen Aldarrikapen Unibertsala, 1. artikulua',
-      galdera: 'Gaur, gela honetan, zer litzateke senide legez jokatzea? Pentsatu keinu bat.' } },
-  '2026-12-11': { ikonoa: 'bidea', mota: 'keinua',
-    lh1: { izena: 'Bidea garbitu',
-      burua: 'Isaias profetak esan zuen: «Prestatu bidea».',
-      azalpena: 'Bidean harri bat badago, norbaitek kendu egin behar du, besteak ez erortzeko.',
-      urratsak: ['Pentsatu: norbaitekin konpondu nahiko zenukeen zerbait badago?',
-        'Aukeratu keinu txiki bat: «barkatu» esan, jolastera gonbidatu, zerbait utzi.',
-        'Ez duzu inori esan behar. Gabonak baino lehen, egin!'],
-      segurtasuna: 'Zure sekretua da. Ez duzu inori kontatu behar.',
-      segundoak: 60 },
-    lh2: { izena: 'Zuzendu',
-      burua: 'Isaias profetak: «Prestatu bidea; bete haranak, berdindu mendiak.»',
-      azalpena: 'Bidea zuzentzea norbaitek iristeko oztopoak kentzea da.',
-      urratsak: ['Hartu paper zati bat.',
-        'Idatzi pertsona baten izena eta, Gabonak baino lehen, harekin zerbait zuzentzeko egin nahi zenukeen keinu bat: mezu bati erantzun, eskerrak eman, barkamena eskatu…',
-        'Ez duzu inori erakutsiko. Tolestu eta gorde.',
-        'Zer egin harekin, zuk erabakiko duzu.'],
-      segurtasuna: 'Papera zurea da. Inork ez du ikusiko.',
-      segundoak: 90 } },
+  /* 2. astea — Bidea prestatu (7a eta 8a jaiegunak) */
+  '2026-12-07': { ikonoa: 'gutuna', mota: 'testua', jaia: true, etiketa: 'Jaieguna', izena: 'Berri onaren hasiera',
+    testua: 'Abendualdia bide berri baten hasiera da, eta gu gara berri on hori gure gelara eta etxera eramaten dugun mezulariak.',
+    iturria: 'Markos 1, 1-8',
+    galdera: 'Nola erakutsiko duzu aste honetan Jesusen etorrera benetako «berri ona» dela zure ingurukoentzat?' },
+  '2026-12-08': { ikonoa: 'basamortua', mota: 'testua', jaia: true, etiketa: 'Jaieguna', izena: 'Basamortuko ahotsa',
+    testua: 'Joan Bataiatzailea basamortuan agertzen da, zaratarik gabeko lekuan, Jainkoaren deia hobeto entzuteko. Gure bizitzan ere zarata asko dago (pantailak, presak, oihuak) eta bidea prestatzeko isiltasun apur bat behar dugu.',
+    iturria: 'Markos 1, 1-8',
+    galdera: 'Noiz hartu dezakezu gaur tarte bat isilik eta lasai egoteko? Jesusen ahotsa entzungo duzu?' },
+  '2026-12-09': { ikonoa: 'bidea', mota: 'testua', izena: 'Bidezidorrak zuzendu',
+    testua: 'Mendiko bide batean harriak eta bihurgune okerrak badaude, zaila da aurrera egitea. Gure arteko haserreek, gezurrek, jeloskor egoteak… ere bidea oztopatzen dute Jesus gure artera iristeko.',
+    iturria: 'Markos 1, 1-8',
+    galdera: 'Zein «harri» edo bihurgune oker (haserre, inbidia, mespretxu) kendu behar duzu gaur zure gelako edo etxeko bidetik?' },
+  '2026-12-10': { ikonoa: 'bihotza', mota: 'testua', izena: 'Bihotz-berritzea eta barkamena',
+    testua: 'Joanek «bihotz-berritzeaz» hitz egiten du: norabidez aldatzea eta gaizki egindakoa zuzentzea. Lagun batekin edo etxeko batekin gaizki portatu bazara, bidea garbitzeko garaia da.',
+    iturria: 'Markos 1, 1-8',
+    galdera: 'Norekin haserretu zara azkenaldian? Norekin konpondu behar duzu harremana aste honetan, Jesusen bidea garbi eta leun egon dadin?' },
+  '2026-12-11': { ikonoa: 'senideak', mota: 'keinua', izena: 'Bidea garbitu',
+    burua: 'Isaias profetak: «Prestatu bidea; bete haranak, berdindu mendiak.»',
+    azalpena: 'Bidea zuzentzea norbaitek iristeko oztopoak kentzea da.',
+    urratsak: ['Hartu paper zati bat.',
+      'Idatzi pertsona baten izena eta, Gabonak baino lehen, harekin zerbait zuzentzeko egin nahi zenukeen keinu bat. Ez du handia izan behar: mezu bati erantzun, eskerrak eman, barkamena eskatu, adibidez.',
+      'Ez duzu inori erakutsiko. Tolestu eta gorde.',
+      'Zer egin harekin, zuk erabakiko duzu.'],
+    segurtasuna: 'Papera zurea da. Inork ez du ikusiko.',
+    segundoak: 60 },
 
   /* 3. astea — Argiaren lekuko (18a, azken eskola-eguna) */
-  '2026-12-14': { ikonoa: 'irria', mota: 'testua',
-    lh1: { izena: 'Poza',
-      testua: 'Atzo, igandea, koroako hirugarren kandela piztu zen. Arrosa da, ez morea! Igande horri «pozaren igandea» deitzen zaio: Gabonak gero eta gertuago daude.',
-      galdera: 'Zerk ematen dizu poza egun hauetan?' },
-    lh2: { izena: 'Gaudete',
-      testua: 'Atzo, igandea, koroako hirugarren kandela piztu zen: arrosa da, ez morea. Igande horri Gaudete deitzen zaio, latinez «poztu zaitezte». Itxaronaldiaren erdian, poza: Gabonak ez dira oraindik iritsi, baina gertu daude.',
-      galdera: 'Zer poz txiki gogoratzen duzu bereziki aurten?' } },
-  '2026-12-15': { ikonoa: 'bonbilla', mota: 'testua',
-    lh1: { izena: 'Argia seinalatu',
-      testua: 'Jende batek uste zuen Joan zela itxaroten zuten salbatzailea. Baina Joan ez zen argia: argia seinalatzen zuen, hatzarekin bezala. Argia Jesus zen.',
-      iturria: 'Joan 1, 8',
-      galdera: 'Nork erakutsi dizu aurten zerbait berria?' },
-    lh2: { izena: 'Lekukoa',
-      testua: 'Batzuek uste zuten Joan Bataiatzailea izan zitekeela itxaroten zuten Mesias, salbatzailea. Berak ezetz esan zuen. Joanen ebanjelioak dio: «Ez zen bera argia; argiaren lekuko izatera etorri zen.» Lekukoak ez du distira egiten: argia seinalatzen du. Kontakizun honetan, argia Jesus da.',
-      iturria: 'Joan 1, 8',
-      galdera: 'Nork lagundu dizu aurten zerbait beste modu batera ikusten?' } },
-  '2026-12-16': { ikonoa: 'hitzak', mota: 'testua',
-    lh1: { izena: 'Jolastera gonbidatu', ikonoa: 'baloia',
-      testua: 'Joanek esan zuen: «Zuen artean badago bat, zuek ezagutzen ez duzuena». Jesus han zegoen, jende artean, beste bat bezala. Batzuetan, gure ondoan dagoen norbait ez dugu ondo ezagutzen.',
-      iturria: 'Joan 1, 26',
-      erronka: 'Jolastokian, gonbidatu jolastera gutxitan jolasten duzun norbait.' },
-    lh2: { izena: 'Ezezaguna',
-      testua: 'Jerusalemetik Joani galdetzera joan zitzaizkion: «Nor zara zu?». Erantzuna arraroa izan zen: «Zuen artean badago bat, zuek ezagutzen ez duzuena.» Jesus han zegoen jada, jende artean, beste bat bezala.',
-      iturria: 'Joan 1, 19-26',
-      galdera: 'Gelan, nor ezagutu nahiko zenuke hobeto? Ez esan izenik. Pentsatu zer galdetuko zeniokeen.' } },
-  '2026-12-17': { ikonoa: 'izarrak', mota: 'bilduma',
-    // {n}: aurreko eskola-egunetako ateen kopurua (1.–3.) edo galderena (4.–6.), automatikoki.
-    lh1: { izena: 'Gure izarrak',
-      testua: 'Hiru aste, {n} ate. Begiratu izarrei: ia osorik daude!',
-      galdera: 'Zein ate gogoratzen duzu gehien? Zer kontatzen zuen?' },
-    lh2: { izena: 'Eraman',
-      testua: 'Hiru aste, {n} galdera.',
-      azalpena: 'Ez dituzu denak erantzun behar. Aukeratu bat: gogoan geratu zaizuna, edo oraindik erantzun ez duzuna, eta hartu une bat hari berriz heltzeko.',
-      segurtasuna: 'Ez duzu inori esan behar zein aukeratu duzun.' } },
-  '2026-12-18': { ikonoa: 'bihotza', mota: 'keinua',
-    lh1: { izena: 'Eskerrik asko',
-      burua: 'Gaur goizean gela garbi aurkitu dugu.',
-      azalpena: 'Gutxitan ikusten dugu nork garbitzen duen. Ikastetxea egunero zaintzen dute pertsona askok: garbitzaileek, atezainek, jangelakoek…',
-      urratsak: ['Gela osoak aukeratu: nori eman nahi diogu eskerrak?',
-        'Bakoitzak marrazki txiki bat egingo du edo bere izena idatziko du, orri handi batean.',
-        'Bik eramango dute gaur.'],
-      segundoak: 0 },
-    lh2: { izena: 'Eskerrak',
-      burua: 'Gaur goizean gela garbi aurkitu dugu.',
-      azalpena: 'Gutxitan ikusten dugu nork garbitzen duen. Ikastetxea egunero zabaltzen eta zaintzen dute, askotan ikusten ez ditugun pertsonek.',
-      urratsak: ['Gela gisa, aukeratu pertsona edo talde bat: garbiketa, atezaintza, jangela, idazkaritza, mantentzea.',
-        'Bik ohar labur bat idatziko dute; denok sinatu atsedenaldia baino lehen.',
-        'Bik eramango dute gaur.'],
-      segundoak: 0 } },
+  '2026-12-14': { ikonoa: 'irria', mota: 'testua', izena: 'Jainkoak bidalia',
+    testua: 'Ebanjelioak dio Joan «Jainkoak bidalia» zela argiaz testigantza emateko. Gu ere gure gelara, familiara eta lagunengana bidaliak gara poza eta argia eramateko.',
+    iturria: 'Joan 1, 6-8. 19-28',
+    galdera: 'Nola erakutsiko duzu aste honetan poza eta maitasuna zure eguneroko ekintzekin?' },
+  '2026-12-15': { ikonoa: 'bonbilla', mota: 'testua', izena: 'Ez naiz argia, testigu baizik',
+    testua: 'Joanek garbi uzten du bera ez dela Argia (Jesus da Argia), baina argi hori seinalatzen duen ispilua dela. Ez dugu zertan perfektuak izan edo protagonista izan, gu gure argia ematen eta zabaltzen saiatu behar gara egunero.',
+    iturria: 'Joan 1, 6-8. 19-28',
+    galdera: 'Badakizu besteen lorpenekin pozten eta besteei argi egiten, zu protagonismoa bilatu gabe?' },
+  '2026-12-16': { ikonoa: 'hitzak', mota: 'testua', izena: 'Nor zara zu?',
+    testua: 'Jendeak behin eta berriz galdetzen dio Joani: «Nor zara zu?». Guk ere geure buruari galdetu behar diogu nolako lekukoak garen: iluntasuna zabaltzen dugu ala argia?',
+    iturria: 'Joan 1, 6-8. 19-28',
+    galdera: 'Zer esaten dute zure hitzek eta jarrerek zutaz: bakea eta argia ekartzen dituzu? Noiz ekartzen duzu argia besteentzat?' },
+  '2026-12-17': { ikonoa: 'izarrak', mota: 'testua', izena: 'Iluntasunean argi-izpia',
+    testua: 'Neguko egunak laburrak eta ilunak dira, eta batzuetan gure etxean edo gelan ere giro tristea egoten da. Argiaren lekuko izatea iluntasun hori keinu goxo batekin haustea da.',
+    iturria: 'Joan 1, 6-8. 19-28',
+    galdera: 'Zein izan da aste honetan beste norbaiti oparitu diozun argi-izpirik politena?' },
+  '2026-12-18': { ikonoa: 'bihotza', mota: 'keinua', izena: 'Eskerrik asko',
+    burua: 'Gaur goizean gela garbi aurkitu dugu.',
+    azalpena: 'Gutxitan ikusten dugu nork garbitzen duen. Ikastetxe hau egunero zabaltzen eta zaintzen dute, askotan ikusten ez ditugun pertsonek.',
+    urratsak: ['Gela gisa, aukeratu pertsona edo talde bat: garbiketa, atezaintza, jangela, idazkaritza, mantentzea.',
+      'Ordezkariak ohar labur bat idatziko du; denok sinatu atsedenaldia baino lehen.',
+      'Bik eramango dute gaur.'],
+    segundoak: 0 },
 
-  /* 4. astea — Bai esan (oporrak: familian) */
-  '2026-12-21': { ikonoa: 'ilargia', mota: 'testua', jaia: true, etiketa: 'Oporrak',
-    lh1: { izena: 'Gau luzeena',
-      testua: 'Gaur da urteko gau luzeena: goiz iluntzen du, eta argia berandu iristen da. Baina bihartik aurrera, egunak pixkanaka luzatuko dira. Gabonetan, ilunaren erdian, argia iristen da.',
-      familian: 'Afaltzean, piztu argi txiki bat, eta esan bakoitzak: zerk ematen dizu argia?' },
-    lh2: { izena: 'Gau luzeena',
-      testua: 'Gaur da urteko egunik laburrena: argia berandu iritsi da eta goiz joango da. Bihartik aurrera, egunak pixkanaka luzatuko dira. Gabonak gau luzeenen ondoan daude: argia iluntasuna handiena denean iristen da.',
-      galdera: 'Egun ilunetan, nor edo zer da zuretzat argia?' } },
-  '2026-12-22': { ikonoa: 'baia', mota: 'testua', jaia: true, etiketa: 'Oporrak',
-    lh1: { izena: 'Bai',
-      testua: 'Gabriel aingeruak Mariari berri handi bat eman zion: Jesusen ama izango zela. Mariak ez zuen dena ulertu, baina «bai» esan zuen.',
-      iturria: 'Lukas 1, 26-38',
-      erronka: 'Gaur etxean laguntza eskatzen dizutenean, esan «bai» irribarre batekin.' },
-    lh2: { izena: 'Bai',
-      testua: 'Gabriel aingeruak Nazareteko neska gazte bati, Mariari, berri bat eman zion: Jesusen ama izango zela. Bai esan aurretik, galdera bat egin zuen: «Nola izango da hori?». Gero bai esan zuen, dena ulertu gabe.',
-      iturria: 'Lukas 1, 26-38',
-      galdera: 'Zeri esan nahiko zenioke baietz, nahiz eta oraindik zalantzak izan?' } },
-  '2026-12-23': { ikonoa: 'gutuna', mota: 'testua', jaia: true, etiketa: 'Oporrak',
-    lh1: { izena: 'Berri ona',
-      testua: 'Jesusek Nazareteko sinagogan Isaiasen liburua irakurri zuen: «Pobreei berri ona ematera bidali nau». Berri ona pozten gaituen albistea da.',
-      iturria: 'Lukas 4, 16-21',
-      erronka: 'Nori alaituko diozu gaur eguna? Nola?' },
-    lh2: { izena: 'Berri ona',
-      testua: 'Jesusek Nazareteko sinagogan Isaiasen pasarte bat irakurri zuen: «Bidali nau pobreei berri ona ematera, bihotz-zaurituak sendatzera.»',
-      iturria: 'Isaias 61, 1; Lukas 4, 16-21',
-      galdera: 'Norentzat izan zaitezke gaur berri on bat? Zer egin dezakezu haren eguna pixka bat alaitzeko?' } },
-  '2026-12-24': { ikonoa: 'gabongaua', mota: 'testua', jaia: true, etiketa: 'Gabon gaua',
-    lh1: { izena: 'Gabon gaua',
-      testua: 'Gaur Gabon gaua da! Olentzero menditik jaitsiko da. Eta kristauek Jesusen jaiotza ospatzen dute: gaur gauean jaio zen haurra.',
-      galdera: 'Gaur gauean, nori emango diozu besarkada handi bat?' },
-    lh2: { izena: 'Gabon gaua',
-      testua: 'Gaur gauean, Olentzero menditik jaitsiko da etxe askotara. Kristauek Jesusen jaiotza ospatzen dute gaur gauean. Festa-egunetan, batzuetan, zaila da benetan egotea: denok hizketan, pantailak, zaratak…',
-      galdera: 'Gaur gauean, nori emango diozu zure arreta osoa?' } },
-  '2026-12-25': { ikonoa: 'izarra', mota: 'testua', jaia: true, etiketa: 'Gabonak', izarrak: true,
-    lh1: { izena: 'Gabonak',
-      testua: 'Itxarotea amaitu da! Jesus jaio da. Ostatuan lekurik ez zegoenez, abere-aska batean etzan zuten. Lehenak jakiten artzainak izan ziren: gauez esna zeudenak.',
-      iturria: 'Lukas 2, 1-20',
-      galdera: 'Begiratu zure lau izarrei: zein ate gustatu zaizu gehien?' },
-    lh2: { izena: 'Gabonak',
-      testua: 'Itxarotea amaitu da. Kristauentzat, Jainkoa haur bihurtu zen, eta abere-aska batean etzan zuten, ostatuan lekurik ez zegoelako. Lehenak jakiten artzainak izan ziren: gauez esna zeudenak.',
-      iturria: 'Lukas 2, 1-20',
-      galdera: 'Abendualdi honetan, zeren zain egon zara? Iritsi da?' } }
+  /* 4. astea — Bai esan (oporrak) */
+  '2026-12-21': { ikonoa: 'hitzak', mota: 'testua', jaia: true, etiketa: 'Oporrak', izena: 'Ez beldurrik izan',
+    testua: 'Aingeruaren hitzek Maria nahastu zuten hasieran, baina aingeruak lasaitu egin zuen: «Ez beldurrik izan». Gauza berri edo zailen aurrean (barkamena eskatzea, laguntzea), beldurra gainditu behar dugu.',
+    iturria: 'Lukas 1, 26-38',
+    galdera: 'Zerk ematen dizu beldurra edo lotsa? Nola gainditu dezakezu?' },
+  '2026-12-22': { ikonoa: 'irria', mota: 'testua', jaia: true, etiketa: 'Oporrak', izena: 'Jainkoarentzat ez dago ezinezkorik',
+    testua: 'Mariak galdetzen du nola gertatuko den hori, eta aingeruak erantzuten dio Jainkoarentzat ez dagoela ezinezkorik. Gure ahalegin txikiek eta Jainkoaren laguntzak gauza handiak lor ditzakete.',
+    iturria: 'Lukas 1, 26-38',
+    galdera: 'Badago zure gelan edo etxean hobetzea «ezinezkoa» dirudien zerbait? Zer jarriko duzu zuk zure aldetik?' },
+  '2026-12-23': { ikonoa: 'baia', mota: 'testua', jaia: true, etiketa: 'Oporrak', izena: 'Gerta bekit zuk esan bezala',
+    testua: 'Mariaren baiezkoari esker jaio zen Jesus. Oporrak eta Gabonak hemen dira; guk ere bihotzeko ateak zabalik ditugu Jesusi ongi etorria emateko.',
+    iturria: 'Lukas 1, 26-38',
+    galdera: 'Zer gordeko duzu zure bihotzean Abendualdi honetatik Gabonetan eta urte berrian bizitzeko?' },
+  '2026-12-24': { ikonoa: 'gabongaua', mota: 'testua', jaia: true, etiketa: 'Gabon gaua', izena: 'Gabon gaua',
+    testua: 'Gaur gauean Olentzero menditik jaitsiko da etxe askotara. Kristauek Jesusen jaiotza ospatzen dute gaur gauean.',
+    galdera: 'Gaur gauean, mahaiean, nori ipiniko diozu arreta osoa?' },
+  '2026-12-25': { ikonoa: 'izarra', mota: 'testua', jaia: true, etiketa: 'Gabonak', izarrak: true, izena: 'Gabonak',
+    testua: 'Itxarotea amaitu da. Kristauentzat, Jainkoa haur bihurtu zen, eta abere-aska batean etzan zuten, ostatuan lekurik ez zegoelako. Lehenak jakiten artzainak izan ziren: gauez esna zeudenak.',
+    iturria: 'Lukas 2, 1-20',
+    galdera: 'Abendualdi honetan, zeren zai egon zara? Iritsi al da?' }
 };
 
 /* ============================================================
@@ -581,197 +446,103 @@ const ATEAK = {
    Euskarazko testu bat aldatzen baduzu, hemen ere aldatu.
    ============================================================ */
 const ATEAK_ES = {
-  '0': {
-    lh1: { izena: 'Puerta de entrada',
-      testua: 'Hoy vamos a abrir una puerta especial. Hasta Navidad, cada día tendremos una puertita: una historia, una pregunta y un pequeño silencio. Cada vez que abramos una puerta, se encenderá una punta de la estrella. ¡Al terminar la semana, la estrella entera!',
-      galdera: 'Aparte de los regalos, ¿qué es lo que más te gusta de la Navidad?' },
-    lh2: { izena: 'Puerta de entrada',
-      testua: 'Hoy abrimos la puerta de entrada. Hasta Navidad, en el colegio y en vacaciones, cada día entre semana tendremos una puerta: una historia corta, una pregunta y un silencio. Cada vez que abramos una puerta, se encenderá una punta de la estrella. Cuatro semanas, cuatro estrellas.',
-      galdera: '¿Qué esperas de este diciembre, aparte de los regalos?' } },
+  '0': { izena: 'Puerta de entrada',
+    testua: 'Hoy vamos a abrir una puerta especial. Hasta Navidad, cada día tendremos una puertita: una historia, una pregunta y un pequeño silencio. Cada vez que abramos una puerta, se encenderá una punta de la estrella. ¡Al terminar la semana, la estrella entera!',
+    galdera: 'Aparte de los regalos, ¿qué es lo que más te gusta de la Navidad?' },
 
   /* Semana 1 — Estar despiertos */
-  '2026-11-30': {
-    lh1: { izena: 'Zain',
-      testua: 'El Adviento es el tiempo de esperar la Navidad. En euskera, «zain» (esperar) y «zaindu» (cuidar) vienen de la misma palabra. Mientras esperamos la Navidad, podemos cuidar a quienes tenemos cerca: amigos, familia, compañeros de clase…',
-      galdera: '¿A quién puedes cuidar hoy? ¿Cómo?' },
-    lh2: { izena: 'Zain',
-      testua: 'Esperando un mensaje, esperando el viernes, esperando la Navidad… Muchas veces al día estamos esperando. En euskera, «zain egon» (esperar) y «zaindu» (cuidar) vienen de la misma palabra. En Adviento esperamos la Navidad, y mientras esperamos podemos cuidar a quienes tenemos cerca.',
-      galdera: '¿Qué estás esperando estos días? Y tú, ¿a quién puedes cuidar mientras tanto?' } },
-  '2026-12-01': {
-    lh1: { izena: 'El portero',
-      testua: 'Jesús contó una historia. El dueño de una casa se fue de viaje y le dijo al portero: «¡Estad atentos!». El portero no sabía cuándo volvería el dueño. Por eso estuvo muy atento, con los ojos bien abiertos.',
-      iturria: 'Marcos 13, 33-35',
-      erronka: 'Hoy serás el portero: con los ojos bien abiertos, date cuenta de si alguien necesita ayuda.' },
-    lh2: { izena: 'El portero',
-      testua: 'Jesús contó una historia: el dueño de una casa se fue de viaje y le dijo al portero: «Velad». El portero no sabía cuándo volvería el dueño: al atardecer, a medianoche o al amanecer. Estar despierto no es no dormir. Es darse cuenta.',
-      iturria: 'Marcos 13, 33-35',
-      galdera: '¿Cuándo te diste cuenta por última vez de que alguien necesitaba ayuda? ¿Qué hiciste?' } },
-  '2026-12-02': {
-    lh1: { izena: 'Escuchar',
-      testua: 'A veces alguien nos cuenta algo y nosotros estamos pensando en otra cosa. Escuchar de verdad es un regalo: mirar a los ojos, estar en silencio y preguntar: «¿Y luego?».',
-      erronka: '¿A quién le vas a hacer hoy ese regalo: escucharle de verdad?' },
-    lh2: { izena: 'Atención',
-      testua: 'La filósofa Simone Weil escribió que la atención es la forma más rara y más pura de la generosidad. Es decir: escuchar de verdad a alguien es un gran regalo. Dejar el móvil, mirar a los ojos y esperar: eso también es cuidar.',
-      iturria: 'Simone Weil, carta a Joë Bousquet, 1942',
-      galdera: '¿Cuándo sentiste por última vez que alguien te escuchaba de verdad? ¿Qué hizo?' } },
-  '2026-12-03': {
-    lh1: { izena: 'El pastor',
-      testua: 'Hoy es el Día del Euskera. En euskera, el pastor, «artzaina», es el «zaina» de las ovejas: el que las cuida. Mucha gente ha cuidado también el euskera, hablándolo durante muchos años en casa y en la calle. Ahora nosotros somos sus cuidadores.',
-      galdera: '¿Cuál es tu palabra favorita en euskera?' },
-    lh2: { izena: 'El pastor',
-      testua: 'Hoy es el Día del Euskera. En euskera, el pastor, «artzaina», es el «zaina» de las ovejas: el que vela mientras los demás duermen. El euskera también nos ha llegado gracias a quienes lo cuidaron: a quienes siguieron hablándolo en casa, incluso cuando estaba arrinconado. Ahora nosotros también somos sus cuidadores.',
-      galdera: '¿Qué te ha llegado en casa de generación en generación? Una palabra, una receta, una canción, un juego…' } },
-  '2026-12-04': {
-    lh1: { izena: 'La vela', burua: 'La primera vela.',
-      testua: 'El domingo se encendió la primera vela de la corona de Adviento. Es una vela pequeña, pero da luz a quien tiene al lado.',
-      galdera: '¿Quién ha sido para ti una pequeña vela esta semana?',
-      oharra: 'Cierra los ojos. Respira tres veces, despacio.' },
-    lh2: { izena: 'La vela', burua: 'La primera vela.',
-      testua: 'Se encendió el domingo, en la corona de Adviento. Una vela pequeña no ilumina toda la clase. A quien tiene al lado, sí.',
-      galdera: 'Esta semana, ¿quién ha sido para ti una pequeña vela? ¿Y tú, para quién?',
-      oharra: 'En silencio, mirando la vela. Nadie tiene que decir nada en voz alta.' } },
+  '2026-11-30': { izena: 'Los ojos del portero',
+    testua: 'En el Evangelio, el dueño de la casa le pide al portero que «esté despierto», porque puede llegar en cualquier momento. Hemos empezado el Adviento y Jesús viene; no podemos dejar que pase sin darnos cuenta.',
+    iturria: 'Marcos 13, 33-37',
+    galdera: '¿Cómo vas a preparar esta semana tus ojos y tu corazón, para que la llegada de Jesús no te pase desapercibida?' },
+  '2026-12-01': { izena: 'No te duermas',
+    testua: 'A veces las costumbres, las pantallas o las prisas nos «duermen», y no nos damos cuenta de que alguien a nuestro lado está triste o solo. Jesús también viene en esas personas.',
+    iturria: 'Marcos 13, 33-37',
+    galdera: '¿Qué es lo que más te «duerme» en el día a día, y no te deja darte cuenta de lo que pasa a tu alrededor?' },
+  '2026-12-02': { izena: 'Anochecer, medianoche, amanecer',
+    testua: 'Jesús dice que no sabemos a qué hora vendrá. No tenemos que esperar a Navidad para abrir el corazón; hoy mismo, en cualquier momento, puede aparecer la ocasión de hacer el bien.',
+    iturria: 'Marcos 13, 33-37',
+    galdera: '¿Estás atento a los pequeños gestos de cariño que surgen en cualquier momento del día? ¿Qué pequeños gestos has recibido hoy?' },
+  '2026-12-03': { izena: 'Cuida la casa',
+    testua: 'Cuando el señor se va de viaje, deja la casa en manos de sus criados, para encontrarlo todo en orden y lleno de vida al volver. Nuestra clase y nuestra familia son esa casa que tenemos que cuidar.',
+    iturria: 'Marcos 13, 33-37',
+    galdera: '¿Cómo estás cuidando esta semana tu clase y a los de tu casa?' },
+  '2026-12-04': { izena: 'La vela',
+    burua: 'La primera vela.',
+    testua: 'El domingo se encendió la primera vela de la corona de Adviento. Es una vela pequeña, pero da luz a quien tiene al lado.',
+    galdera: '¿Quién ha sido para ti una pequeña vela esta semana?',
+    oharra: 'Cierra los ojos. Respira tres veces, despacio.' },
 
   /* Semana 2 — Preparar el camino */
-  '2026-12-07': { etiketa: 'Festivo',
-    lh1: { izena: 'El desierto',
-      testua: 'Juan el Bautista vivía en el desierto. Vestía piel de camello, ¡y comía saltamontes y miel silvestre! Mucha gente iba a buscarlo. Juan les decía: «Preparad el camino: viene alguien especial».',
-      iturria: 'Marcos 1, 4-7',
-      familian: '¿Qué podemos hacer en casa, juntos, para preparar la Navidad?' },
-    lh2: { izena: 'El desierto',
-      testua: 'Juan el Bautista vivía en el desierto, vestido con piel de camello, y comía saltamontes y miel silvestre. Aun así, la gente salía de la ciudad a buscarlo. Llamaba a cambiar de vida, y bautizaba en el río Jordán. No decía lo que la gente quería oír.',
-      iturria: 'Marcos 1, 4-6',
-      galdera: '¿Quién te dice la verdad, incluso cuando no quieres oírla?' } },
-  '2026-12-08': { etiketa: 'Festivo',
-    lh1: { izena: 'Preparar',
-      testua: 'Hoy es fiesta: el día de la Inmaculada. Este día se celebra a María, la madre de Jesús. María hizo sitio a Jesús en su vida. Cuando alguien viene a casa, nosotros también le preparamos un sitio.',
-      familian: '¿Qué puedes preparar hoy en casa para otra persona?' },
-    lh2: { izena: 'Preparar',
-      testua: 'Hoy es festivo. Los católicos celebran la Inmaculada Concepción: que María, la que iba a ser madre de Jesús, fue concebida sin pecado original. En Adviento recordamos el sitio que María hizo a Jesús en su vida. Preparar no es hacer grandes cosas: es hacer sitio para que alguien llegue.',
-      galdera: 'Hoy, en casa, ¿qué puedes preparar para otra persona?' } },
-  '2026-12-09': {
-    lh1: { izena: 'Tú primero',
-      testua: 'Juan era muy conocido: mucha gente iba a escucharle. Pero Juan dijo: «Detrás de mí viene el que es más fuerte que yo». Juan no quería ser el primero. Quería que la gente conociera a Jesús.',
-      iturria: 'Marcos 1, 7',
-      erronka: 'Hoy, en la fila o en el juego, deja que otra persona sea la primera.' },
-    lh2: { izena: 'Hacerse a un lado',
-      testua: 'Juan era famoso: mucha gente iba a buscarlo. Pero dijo: «Detrás de mí viene el que es más fuerte que yo, y no merezco agacharme para desatarle la correa de sus sandalias.» Desatar las sandalias era tarea de criados. Juan quería dirigir la atención de la gente hacia Jesús.',
-      iturria: 'Marcos 1, 7',
-      galdera: 'En un trabajo en grupo, ¿qué puedes hacer para que también se escuche la idea de alguien que habla poco?' } },
-  '2026-12-10': {
-    lh1: { izena: 'Como hermanos',
-      testua: 'Hoy es el Día de los Derechos Humanos. Hace muchos años, muchos países escribieron juntos: todas las personas tenemos los mismos derechos, y debemos tratarnos como hermanos.',
-      erronka: 'Hoy, ¿qué gesto vas a tener para que un compañero o compañera se sienta bien?' },
-    lh2: { izena: 'Como hermanos',
-      testua: 'El 10 de diciembre de 1948, después de una gran guerra, las Naciones Unidas aprobaron la Declaración Universal de los Derechos Humanos. Su primer artículo dice que todos los seres humanos «deben comportarse fraternalmente los unos con los otros». Nuestro lema de este curso también recoge esa idea.',
-      iturria: 'Declaración Universal de los Derechos Humanos, artículo 1',
-      galdera: 'Hoy, en esta clase, ¿qué sería comportarse como hermanos? Piensa en un gesto.' } },
-  '2026-12-11': {
-    lh1: { izena: 'Limpiar el camino',
-      burua: 'El profeta Isaías dijo: «Preparad el camino».',
-      azalpena: 'Si hay una piedra en el camino, alguien tiene que quitarla para que los demás no se caigan.',
-      urratsak: ['Piensa: ¿hay algo que te gustaría arreglar con alguien?',
-        'Elige un gesto pequeño: pedir perdón, invitar a jugar, dejar algo.',
-        'No tienes que decírselo a nadie. ¡Hazlo antes de Navidad!'],
-      segurtasuna: 'Es tu secreto. No tienes que contárselo a nadie.' },
-    lh2: { izena: 'Enderezar',
-      burua: 'El profeta Isaías: «Preparad el camino; que los valles se levanten, que montes y colinas se abajen.»',
-      azalpena: 'Enderezar el camino es quitar los obstáculos para que alguien pueda llegar.',
-      urratsak: ['Coge un trozo de papel.',
-        'Escribe el nombre de una persona y un gesto que te gustaría tener con ella antes de Navidad para arreglar algo: responder a un mensaje, dar las gracias, pedir perdón…',
-        'No se lo vas a enseñar a nadie. Dóblalo y guárdalo.',
-        'Qué hacer con él lo decides tú.'],
-      segurtasuna: 'El papel es tuyo. Nadie lo va a ver.' } },
+  '2026-12-07': { etiketa: 'Festivo', izena: 'El comienzo de la buena noticia',
+    testua: 'El Adviento es el comienzo de un camino nuevo, y nosotros somos los mensajeros que llevamos esa buena noticia a nuestra clase y a nuestra casa.',
+    iturria: 'Marcos 1, 1-8',
+    galdera: '¿Cómo vas a mostrar esta semana a quienes te rodean que la llegada de Jesús es una verdadera «buena noticia»?' },
+  '2026-12-08': { etiketa: 'Festivo', izena: 'La voz en el desierto',
+    testua: 'Juan el Bautista aparece en el desierto, un lugar sin ruido, para escuchar mejor la llamada de Dios. En nuestra vida también hay mucho ruido (pantallas, prisas, gritos), y para preparar el camino necesitamos un poco de silencio.',
+    iturria: 'Marcos 1, 1-8',
+    galdera: '¿Cuándo puedes tener hoy un rato para estar en silencio y tranquilo? ¿Escucharás la voz de Jesús?' },
+  '2026-12-09': { izena: 'Allanad sus senderos',
+    testua: 'Si en un camino de montaña hay piedras y curvas torcidas, cuesta avanzar. Nuestros enfados, las mentiras, los celos… también ponen obstáculos para que Jesús llegue hasta nosotros.',
+    iturria: 'Marcos 1, 1-8',
+    galdera: '¿Qué «piedra» o curva torcida (enfado, envidia, desprecio) tienes que quitar hoy del camino de tu clase o de tu casa?' },
+  '2026-12-10': { izena: 'Conversión y perdón',
+    testua: 'Juan habla de «conversión»: cambiar de dirección y corregir lo que hemos hecho mal. Si te has portado mal con un amigo o con alguien de casa, es el momento de limpiar el camino.',
+    iturria: 'Marcos 1, 1-8',
+    galdera: '¿Con quién te has enfadado últimamente? ¿Con quién tienes que hacer las paces esta semana, para que el camino de Jesús esté limpio y llano?' },
+  '2026-12-11': { izena: 'Limpiar el camino',
+    burua: 'El profeta Isaías: «Preparad el camino; que los valles se levanten, que montes y colinas se abajen.»',
+    azalpena: 'Enderezar el camino es quitar los obstáculos para que alguien pueda llegar.',
+    urratsak: ['Coge un trozo de papel.',
+      'Escribe el nombre de una persona y un gesto que te gustaría tener con ella antes de Navidad para arreglar algo. No tiene que ser algo grande: responder a un mensaje, dar las gracias o pedir perdón, por ejemplo.',
+      'No se lo vas a enseñar a nadie. Dóblalo y guárdalo.',
+      'Qué hacer con él lo decides tú.'],
+    segurtasuna: 'El papel es tuyo. Nadie lo va a ver.' },
 
   /* Semana 3 — Testigos de la luz */
-  '2026-12-14': {
-    lh1: { izena: 'Alegría',
-      testua: 'Ayer, domingo, se encendió la tercera vela de la corona. ¡Es rosa, no morada! A ese domingo lo llamamos «el domingo de la alegría»: la Navidad está cada vez más cerca.',
-      galdera: '¿Qué te da alegría estos días?' },
-    lh2: { izena: 'Gaudete',
-      testua: 'Ayer, domingo, se encendió la tercera vela de la corona: es rosa, no morada. A ese domingo se le llama Gaudete, en latín «alegraos». En mitad de la espera, alegría: la Navidad aún no ha llegado, pero está cerca.',
-      galdera: '¿Qué pequeña alegría recuerdas especialmente de este año?' } },
-  '2026-12-15': {
-    lh1: { izena: 'Señalar la luz',
-      testua: 'Algunas personas pensaban que Juan era el salvador que esperaban. Pero Juan no era la luz: señalaba la luz, como con el dedo. La luz era Jesús.',
-      iturria: 'Juan 1, 8',
-      galdera: '¿Quién te ha enseñado algo nuevo este año?' },
-    lh2: { izena: 'El testigo',
-      testua: 'Algunos pensaban que Juan el Bautista podía ser el Mesías que esperaban, el salvador. Él dijo que no. El evangelio de Juan lo cuenta así: «No era él la luz, sino el que daba testimonio de la luz.» El testigo no brilla: señala la luz. En este relato, la luz es Jesús.',
-      iturria: 'Juan 1, 8',
-      galdera: '¿Quién te ha ayudado este año a ver algo de otra manera?' } },
-  '2026-12-16': {
-    lh1: { izena: 'Invitar a jugar',
-      testua: 'Juan dijo: «En medio de vosotros hay uno que no conocéis». Jesús estaba allí, entre la gente, como uno más. A veces no conocemos bien a alguien que está a nuestro lado.',
-      iturria: 'Juan 1, 26',
-      erronka: 'En el patio, invita a jugar a alguien con quien juegas poco.' },
-    lh2: { izena: 'El desconocido',
-      testua: 'Desde Jerusalén fueron a preguntarle a Juan: «¿Tú quién eres?». La respuesta fue extraña: «En medio de vosotros hay uno que no conocéis.» Jesús ya estaba allí, entre la gente, como uno más.',
-      iturria: 'Juan 1, 19-26',
-      galdera: 'En clase, ¿a quién te gustaría conocer mejor? No digas nombres. Piensa qué le preguntarías.' } },
-  '2026-12-17': {
-    lh1: { izena: 'Nuestras estrellas',
-      testua: 'Tres semanas, {n} puertas. Mirad las estrellas: ¡están casi completas!',
-      galdera: '¿Qué puerta recuerdas más? ¿Qué contaba?' },
-    lh2: { izena: 'Llevar',
-      testua: 'Tres semanas, {n} preguntas.',
-      azalpena: 'No tienes que responderlas todas. Elige una: la que se te ha quedado grabada, o la que aún no has respondido, y tómate un momento para volver a ella.',
-      segurtasuna: 'No tienes que decir a nadie cuál has elegido.' } },
-  '2026-12-18': {
-    lh1: { izena: 'Gracias',
-      burua: 'Esta mañana hemos encontrado la clase limpia.',
-      azalpena: 'Pocas veces vemos quién la limpia. Muchas personas cuidan el colegio cada día: el personal de limpieza, de portería, de comedor…',
-      urratsak: ['Entre toda la clase, elegid: ¿a quién queremos dar las gracias?',
-        'Cada uno hará un dibujo pequeño o escribirá su nombre en una hoja grande.',
-        'Dos personas la llevarán hoy.'] },
-    lh2: { izena: 'Gracias',
-      burua: 'Esta mañana hemos encontrado la clase limpia.',
-      azalpena: 'Pocas veces vemos quién la limpia. Este colegio lo abren y lo cuidan cada día personas a las que muchas veces no vemos.',
-      urratsak: ['Como clase, elegid una persona o un grupo: limpieza, portería, comedor, secretaría, mantenimiento.',
-        'Dos personas escribirán una nota breve; firmadla todos antes del recreo.',
-        'Dos personas la llevarán hoy.'] } },
+  '2026-12-14': { izena: 'Enviado por Dios',
+    testua: 'El Evangelio dice que Juan fue «enviado por Dios» para dar testimonio de la luz. Nosotros también somos enviados a nuestra clase, a nuestra familia y a nuestros amigos para llevar alegría y luz.',
+    iturria: 'Juan 1, 6-8. 19-28',
+    galdera: '¿Cómo vas a mostrar esta semana alegría y cariño con lo que haces cada día?' },
+  '2026-12-15': { izena: 'No soy la luz, sino testigo',
+    testua: 'Juan deja claro que él no es la Luz (la Luz es Jesús), sino un espejo que señala esa luz. No tenemos por qué ser perfectos ni protagonistas: tenemos que intentar dar y compartir nuestra luz cada día.',
+    iturria: 'Juan 1, 6-8. 19-28',
+    galdera: '¿Sabes alegrarte con los logros de los demás y dar luz a otros, sin buscar ser protagonista?' },
+  '2026-12-16': { izena: '¿Quién eres tú?',
+    testua: 'La gente le pregunta una y otra vez a Juan: «¿Quién eres tú?». Nosotros también tenemos que preguntarnos qué clase de testigos somos: ¿repartimos oscuridad o luz?',
+    iturria: 'Juan 1, 6-8. 19-28',
+    galdera: '¿Qué dicen de ti tus palabras y tus actitudes: traes paz y luz? ¿Cuándo das luz a los demás?' },
+  '2026-12-17': { izena: 'Rayo de luz en la oscuridad',
+    testua: 'Los días de invierno son cortos y oscuros, y a veces en casa o en clase también hay un ambiente triste. Ser testigo de la luz es romper esa oscuridad con un gesto cariñoso.',
+    iturria: 'Juan 1, 6-8. 19-28',
+    galdera: '¿Cuál ha sido esta semana el rayo de luz más bonito que le has regalado a alguien?' },
+  '2026-12-18': { izena: 'Gracias',
+    burua: 'Esta mañana hemos encontrado la clase limpia.',
+    azalpena: 'Pocas veces vemos quién la limpia. Este colegio lo abren y lo cuidan cada día personas a las que muchas veces no vemos.',
+    urratsak: ['Como clase, elegid una persona o un grupo: limpieza, portería, comedor, secretaría, mantenimiento.',
+      'El delegado o la delegada escribirá una nota breve; firmadla todos antes del recreo.',
+      'Dos personas la llevarán hoy.'] },
 
   /* Semana 4 — Decir sí */
-  '2026-12-21': { etiketa: 'Vacaciones',
-    lh1: { izena: 'La noche más larga',
-      testua: 'Hoy es la noche más larga del año: anochece pronto y la luz llega tarde. Pero a partir de mañana, los días se irán alargando poco a poco. En Navidad, en medio de la oscuridad, llega la luz.',
-      familian: 'En la cena, encended una lucecita, y que cada uno diga: ¿qué te da luz?' },
-    lh2: { izena: 'La noche más larga',
-      testua: 'Hoy es el día más corto del año: la luz ha llegado tarde y se irá pronto. A partir de mañana, los días se irán alargando poco a poco. La Navidad está junto a las noches más largas: la luz llega cuando la oscuridad es mayor.',
-      galdera: 'En los días oscuros, ¿quién o qué es luz para ti?' } },
-  '2026-12-22': { etiketa: 'Vacaciones',
-    lh1: { izena: 'Sí',
-      testua: 'El ángel Gabriel le dio a María una gran noticia: que iba a ser la madre de Jesús. María no lo entendió todo, pero dijo «sí».',
-      iturria: 'Lucas 1, 26-38',
-      erronka: 'Hoy en casa, cuando te pidan ayuda, di «sí» con una sonrisa.' },
-    lh2: { izena: 'Sí',
-      testua: 'El ángel Gabriel dio una noticia a una chica joven de Nazaret, María: que iba a ser la madre de Jesús. Antes de decir que sí, hizo una pregunta: «¿Cómo será eso?». Después dijo que sí, sin entenderlo todo.',
-      iturria: 'Lucas 1, 26-38',
-      galdera: '¿A qué te gustaría decir que sí, aunque todavía tengas dudas?' } },
-  '2026-12-23': { etiketa: 'Vacaciones',
-    lh1: { izena: 'Buena noticia',
-      testua: 'Jesús leyó el libro de Isaías en la sinagoga de Nazaret: «Me ha enviado a dar la buena noticia a los pobres». Una buena noticia es algo que nos alegra.',
-      iturria: 'Lucas 4, 16-21',
-      erronka: '¿A quién vas a alegrar hoy el día? ¿Cómo?' },
-    lh2: { izena: 'Buena noticia',
-      testua: 'Jesús leyó un pasaje de Isaías en la sinagoga de Nazaret: «Me ha enviado para dar la buena noticia a los pobres, para curar los corazones desgarrados.»',
-      iturria: 'Isaías 61, 1; Lucas 4, 16-21',
-      galdera: '¿Para quién puedes ser hoy una buena noticia? ¿Qué puedes hacer para alegrarle un poco el día?' } },
-  '2026-12-24': { etiketa: 'Nochebuena',
-    lh1: { izena: 'Nochebuena',
-      testua: '¡Hoy es Nochebuena! El Olentzero bajará del monte. Y los cristianos celebran el nacimiento de Jesús: esta noche nació el niño.',
-      galdera: 'Esta noche, ¿a quién vas a dar un abrazo muy grande?' },
-    lh2: { izena: 'Nochebuena',
-      testua: 'Esta noche, el Olentzero bajará del monte a muchas casas. Los cristianos celebran esta noche el nacimiento de Jesús. En los días de fiesta, a veces, cuesta estar de verdad: todos hablando, pantallas, ruido…',
-      galdera: 'Esta noche, ¿a quién vas a dar toda tu atención?' } },
-  '2026-12-25': { etiketa: 'Navidad',
-    lh1: { izena: 'Navidad',
-      testua: '¡La espera ha terminado! Jesús ha nacido. Como no había sitio en la posada, lo acostaron en un pesebre. Los primeros en saberlo fueron los pastores: los que estaban despiertos de noche.',
-      iturria: 'Lucas 2, 1-20',
-      galdera: 'Mira tus cuatro estrellas: ¿qué puerta te ha gustado más?' },
-    lh2: { izena: 'Navidad',
-      testua: 'La espera ha terminado. Para los cristianos, Dios se hizo niño, y lo acostaron en un pesebre porque no había sitio en la posada. Los primeros en saberlo fueron los pastores: los que estaban despiertos de noche.',
-      iturria: 'Lucas 2, 1-20',
-      galdera: 'En este Adviento, ¿qué has estado esperando? ¿Ha llegado?' } }
+  '2026-12-21': { etiketa: 'Vacaciones', izena: 'No tengas miedo',
+    testua: 'Las palabras del ángel desconcertaron a María al principio, pero el ángel la tranquilizó: «No tengas miedo». Ante cosas nuevas o difíciles (pedir perdón, ayudar), tenemos que vencer el miedo.',
+    iturria: 'Lucas 1, 26-38',
+    galdera: '¿Qué te da miedo o vergüenza? ¿Cómo puedes superarlo?' },
+  '2026-12-22': { etiketa: 'Vacaciones', izena: 'Para Dios nada es imposible',
+    testua: 'María pregunta cómo va a ocurrir eso, y el ángel le responde que para Dios nada es imposible. Nuestros pequeños esfuerzos y la ayuda de Dios pueden conseguir grandes cosas.',
+    iturria: 'Lucas 1, 26-38',
+    galdera: '¿Hay algo en tu clase o en tu casa que parece «imposible» de mejorar? ¿Qué vas a poner tú de tu parte?' },
+  '2026-12-23': { etiketa: 'Vacaciones', izena: 'Hágase en mí según tu palabra',
+    testua: 'Gracias al sí de María nació Jesús. Ya están aquí las vacaciones y la Navidad; nosotros también tenemos abiertas las puertas del corazón para dar la bienvenida a Jesús.',
+    iturria: 'Lucas 1, 26-38',
+    galdera: '¿Qué vas a guardar en tu corazón de este Adviento para vivirlo en Navidad y en el año nuevo?' },
+  '2026-12-24': { etiketa: 'Nochebuena', izena: 'Nochebuena',
+    testua: 'Esta noche, el Olentzero bajará del monte a muchas casas. Los cristianos celebran esta noche el nacimiento de Jesús.',
+    galdera: 'Esta noche, en la mesa, ¿a quién vas a prestar toda tu atención?' },
+  '2026-12-25': { etiketa: 'Navidad', izena: 'Navidad',
+    testua: 'La espera ha terminado. Para los cristianos, Dios se hizo niño, y lo acostaron en un pesebre porque no había sitio en la posada. Los primeros en saberlo fueron los pastores: los que estaban despiertos de noche.',
+    iturria: 'Lucas 2, 1-20',
+    galdera: 'En este Adviento, ¿qué has estado esperando? ¿Ha llegado?' }
 };
 
 const ASTEAK = [
@@ -796,22 +567,16 @@ const TESTUAK = {
     hilabeteak: ['urtarrilak','otsailak','martxoak','apirilak','maiatzak','ekainak','uztailak','abuztuak','irailak','urriak','azaroak','abenduak'],
     egunLuzea: (ag, hil, eg) => ag + ', ' + hil + ' ' + eg,
     egunLaburra: (hil, eg) => larriz(hil) + ' ' + eg,
-    zenbakiak: ['zero','bat','bi','hiru','lau','bost','sei','zazpi','zortzi','bederatzi','hamar','hamaika','hamabi','hamahiru','hamalau','hamabost'],
     koroaAurretik: 'Abendualdia azaroaren 29an hasiko da',
     igandea: n => n + '. igandea',
     gaur: 'Gaur', ireki: 'Ireki atea', itxita: 'Itxita', gabonak: 'Gabonak', keinua: 'Keinua',
     hasi: 'Hasi isilunea', martxan: 'Martxan…', isilik: 'Isilik…', begiakItxita: 'Begiak itxita…', amaitua: 'Eskerrik asko.',
     kutxa: 'Egutegia', zeroMeta: 'Erlijio-saioa · 0. atea',
     etiketak: { galdera: 'Galdera', erronka: 'Erronka', familian: 'Familian' },
-    galderaOharra: { lh1: 'Ez duzu ezer ozen esan behar: pentsatu zure barruan.', lh2: 'Galdera norberarentzat da. Inork ez du ezer ozen esan behar.' },
+    galderaOharra: 'Ez duzu ezer ozen esan behar: pentsatu zure barruan.',
     erronkaOharra: 'Erronka zurea da: ez duzu inori kontatu behar.',
     jaiOharra: 'Etxeko atea: familian irekitzeko.',
     izarra: (zenb, n) => zenb + ': ' + n + ' punta piztuta, 5etik',
-    mailaEtiketa: 'Maila',
-    mailak: { lh1: { laburra: '1.–3.', osoa: '1.–3. maila', adina: 'maila · 6–9 urte' },
-              lh2: { laburra: '4.–6.', osoa: '4.–6. maila', adina: 'maila · 9–12 urte' } },
-    mailaGaldera: 'Zein mailatarako?',
-    mailaAzalpena: 'Testuak adinera egokituta daude. Gero ere alda dezakezu, goian.',
     proba: 'Proba-modua: ate guztiak irekita',
     pantailaOsoa: 'Pantaila osoa', pantailaIrten: 'Irten pantaila osotik',
     lehenAtea: 'Lehen atea azaroaren 30ean irekiko da.',
@@ -826,22 +591,16 @@ const TESTUAK = {
     hilabeteak: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
     egunLuzea: (ag, hil, eg) => ag + ', ' + eg + ' de ' + hil,
     egunLaburra: (hil, eg) => eg + ' de ' + hil,
-    zenbakiak: ['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince'],
     koroaAurretik: 'El Adviento empieza el 29 de noviembre',
     igandea: n => ['1.er','2.º','3.er','4.º'][n - 1] + ' domingo de Adviento',
     gaur: 'Hoy', ireki: 'Abrir la puerta', itxita: 'Cerrada', gabonak: 'Navidad', keinua: 'Gesto',
     hasi: 'Empezar el silencio', martxan: 'En marcha…', isilik: 'En silencio…', begiakItxita: 'Ojos cerrados…', amaitua: 'Gracias.',
     kutxa: 'Calendario', zeroMeta: 'Sesión de Religión · Puerta 0',
     etiketak: { galdera: 'Pregunta', erronka: 'Reto', familian: 'En familia' },
-    galderaOharra: { lh1: 'No tienes que decir nada en voz alta: piénsalo por dentro.', lh2: 'La pregunta es para cada uno. Nadie tiene que decir nada en voz alta.' },
+    galderaOharra: 'No tienes que decir nada en voz alta: piénsalo por dentro.',
     erronkaOharra: 'El reto es tuyo: no tienes que contárselo a nadie.',
     jaiOharra: 'Puerta para casa: para abrirla en familia.',
     izarra: (zenb, n) => zenb + ': ' + n + ' de 5 puntas encendidas',
-    mailaEtiketa: 'Curso',
-    mailak: { lh1: { laburra: '1.º–3.º', osoa: '1.º a 3.º de Primaria', adina: 'curso · 6–9 años' },
-              lh2: { laburra: '4.º–6.º', osoa: '4.º a 6.º de Primaria', adina: 'curso · 9–12 años' } },
-    mailaGaldera: '¿Para qué curso?',
-    mailaAzalpena: 'Los textos están adaptados a cada edad. Puedes cambiarlo luego, arriba.',
     proba: 'Modo prueba: todas las puertas abiertas',
     pantailaOsoa: 'Pantalla completa', pantailaIrten: 'Salir de pantalla completa',
     lehenAtea: 'La primera puerta se abre el 30 de noviembre.',
@@ -891,7 +650,7 @@ function ikonoa(izena){
 /* ============================================================
    LOGIKA
    ============================================================ */
-// Helbidean '?' bat baino gehiago badago (adib. ?maila=1-3?proba), '&' bihurtu.
+// Helbidean '?' bat baino gehiago badago (adib. ?lang=es?proba), '&' bihurtu.
 if (location.search.indexOf('?', 1) > -1) {
   try { history.replaceState(null, '', location.pathname + '?' + location.search.slice(1).replace(/\?/g, '&') + location.hash); } catch (e) {}
 }
@@ -909,19 +668,10 @@ function hasierakoHizkuntza(){
   try { const g = localStorage.getItem('zain-hizkuntza'); if (g === 'eu' || g === 'es') return g; } catch (e) {}
   return 'eu';
 }
-// Maila: ?maila=1-3 / ?maila=4-6 helbidean, bestela ordenagailu honetan azken aukera, bestela galdetu.
-function hasierakoMaila(){
-  const p = (P.get('maila') || '').replace(/\s/g, '').toLowerCase();
-  if (['1-3', '1', '13', 'lh1'].includes(p)) return 'lh1';
-  if (['4-6', '4', '46', 'lh2'].includes(p)) return 'lh2';
-  try { const g = localStorage.getItem('zain-lh-maila'); if (g === 'lh1' || g === 'lh2') return g; } catch (e) {}
-  return null;
-}
 let HIZK = hasierakoHizkuntza();
-let MAILA = hasierakoMaila();
-// Proba-moduetan (?proba, ?gaur) ez galdetu: 1.–3. hartu, eta goiko hautatzailearekin aldatu.
-const MAILA_GALDETU = MAILA === null && !SIMULAZIOA;
-if (!MAILA) MAILA = 'lh1';
+// Lehen bi mailako bertsioen arrastoak garbitu (?maila=… esteka zaharrek funtzionatzen jarraitzen dute).
+try { localStorage.removeItem('zain-lh-maila'); } catch (e) {}
+if (P.has('maila')) helbidea('maila', null);
 function T(){ return TESTUAK[HIZK]; }
 
 function dataZuzena(s){
@@ -939,14 +689,9 @@ function hilabetea(iso){ return T().hilabeteak[data(iso).getMonth()]; }
 function egunLuzea(iso){ const d = data(iso); return T().egunLuzea(T().astegunak[d.getDay()], hilabetea(iso), d.getDate()); }
 function egunLaburra(iso){ return T().egunLaburra(hilabetea(iso), data(iso).getDate()); }
 function asteaNon(iso){ const a = ASTEAK.find(x => x.egunak.includes(iso)); return a && HIZK === 'es' ? a.es : a; }
-function zenbakia(n){ return T().zenbakiak[n] || String(n); }
-
-// Atea, uneko maila eta hizkuntzan: oinarria + maila, eta gaztelaniaz, gainean ATEAK_ES.
+// Atea, uneko hizkuntzan: euskarazkoa, eta gaztelaniaz, gainean ATEAK_ES.
 function atea(iso){
-  const { lh1, lh2, ...komuna } = ATEAK[iso];
-  const es = HIZK === 'es' ? (ATEAK_ES[iso] || {}) : {};
-  const { lh1: e1, lh2: e2, ...esKomuna } = es;
-  return Object.assign({}, komuna, esKomuna, ATEAK[iso][MAILA], es[MAILA] || {});
+  return Object.assign({}, ATEAK[iso], HIZK === 'es' ? (ATEAK_ES[iso] || {}) : {});
 }
 
 let irekiak = new Set();
@@ -1005,7 +750,7 @@ function izarLerroa(asteak){
   return d;
 }
 
-/* ---------- Aukerak: maila (1.–3. / 4.–6.) eta hizkuntza (EUS / CAS) ---------- */
+/* ---------- Aukerak: hizkuntza (EUS / CAS) ---------- */
 function txanda(klasea, etiketa, aukerak, unekoa, aldatu){
   const g = el('div', 'txanda ' + klasea);
   g.setAttribute('role', 'group');
@@ -1024,13 +769,8 @@ function txanda(klasea, etiketa, aukerak, unekoa, aldatu){
 function hizkuntzaAukera(){
   return txanda('hizkuntza', 'Hizkuntza · Idioma', [['eu', 'EUS', 'Euskara', 'eu'], ['es', 'CAS', 'Castellano', 'es']], HIZK, hizkuntzaAldatu);
 }
-function mailaAukera(){
-  const m = T().mailak;
-  return txanda('maila', T().mailaEtiketa, [['lh1', m.lh1.laburra, m.lh1.osoa], ['lh2', m.lh2.laburra, m.lh2.osoa]], MAILA, kodea => mailaAldatu(kodea));
-}
 function aukerak(){
   const d = el('div', 'aukerak');
-  d.appendChild(mailaAukera());
   d.appendChild(hizkuntzaAukera());
   return d;
 }
@@ -1052,12 +792,9 @@ function denaBerritu(){
   document.getElementById('sareta').innerHTML = '';
   sareta();
   if (!PANTAILA.hidden) irekiBarrua(itzultzeko);
-  const geruza = document.getElementById('maila-hautua');
-  if (geruza) { geruza.remove(); mailaHautua(); }
 }
 function fokuaItzuli(klasea, kodea){
-  const geruza = document.getElementById('maila-hautua');
-  const lekua = geruza || (PANTAILA.hidden ? document.getElementById('kutxa') : PANTAILA);
+  const lekua = PANTAILA.hidden ? document.getElementById('kutxa') : PANTAILA;
   const botoia = lekua.querySelector('.' + klasea + ' [data-kodea="' + kodea + '"]');
   if (botoia) botoia.focus({ preventScroll: true });
 }
@@ -1069,48 +806,6 @@ function hizkuntzaAldatu(kodea){
   helbidea('lang', kodea === 'es' ? 'es' : null);
   denaBerritu();
   fokuaItzuli('hizkuntza', kodea);
-}
-function mailaAldatu(kodea, beti){
-  if (kodea === MAILA && !beti) return;
-  MAILA = kodea;
-  try { localStorage.setItem('zain-lh-maila', kodea); } catch (e) {}
-  helbidea('maila', kodea === 'lh1' ? '1-3' : '4-6');
-  denaBerritu();
-  fokuaItzuli('maila', kodea);
-}
-
-/* Lehen aldian, mailarik ez badago: galdetu. */
-function mailaHautua(){
-  const kutxa = document.getElementById('kutxa');
-  const geruza = el('div', 'maila-hautua');
-  geruza.id = 'maila-hautua';
-  geruza.setAttribute('role', 'dialog');
-  geruza.setAttribute('aria-modal', 'true');
-  geruza.setAttribute('aria-labelledby', 'maila-burua');
-  const k = el('div', 'maila-txartela');
-  k.appendChild(hizkuntzaAukera());
-  const h = el('h2', null, T().mailaGaldera); h.id = 'maila-burua';
-  k.appendChild(h);
-  k.appendChild(el('p', null, T().mailaAzalpena));
-  const botoiak = el('div', 'maila-botoiak');
-  ['lh1', 'lh2'].forEach(m => {
-    const b = el('button', 'maila-botoia'); b.type = 'button';
-    b.appendChild(el('strong', null, T().mailak[m].laburra));
-    b.appendChild(el('span', null, T().mailak[m].adina));
-    b.addEventListener('click', () => {
-      geruza.remove();
-      kutxa.removeAttribute('inert');
-      mailaAldatu(m, true);
-      const lehena = document.querySelector('#sareta button.gela.gaur') || document.querySelector('#aukerak-lekua .maila [aria-pressed="true"]');
-      if (lehena) lehena.focus({ preventScroll: true });
-    });
-    botoiak.appendChild(b);
-  });
-  k.appendChild(botoiak);
-  geruza.appendChild(k);
-  document.body.appendChild(geruza);
-  kutxa.setAttribute('inert', '');
-  botoiak.querySelector('button').focus({ preventScroll: true });
 }
 
 function testuFinkoak(){
@@ -1182,7 +877,40 @@ function sareta(berria){
     astea.egunak.forEach(iso => s.appendChild(gela(iso)));
   });
   [...s.children].forEach((c, i) => c.style.setProperty('--i', i));
+  izenakDoitu();
 }
+
+/* Izen luzeak gelaxkan sartu: letra txikitu, gelaxkatik irten gabe (gutxienez % 62). */
+function izenakDoitu(){
+  document.querySelectorAll('#sareta .gela .izena').forEach(iz => {
+    iz.style.fontSize = '';
+    const g = iz.closest('.gela');
+    let px = parseFloat(getComputedStyle(iz).fontSize);
+    const min = px * 0.62;
+    while ((g.scrollHeight > g.clientHeight + 1 || iz.scrollWidth > iz.clientWidth + 1) && px > min) {
+      px -= 1; iz.style.fontSize = px + 'px';
+    }
+  });
+}
+
+/* Ate-pantaila: edukia ez bada sartzen, letrak pixkanaka txikitu (proiektorean, korritu gabe). */
+function ateaDoitu(){
+  if (PANTAILA.hidden) return;
+  PANTAILA.style.removeProperty('--eskala');
+  if (window.matchMedia('(max-width: 760px)').matches) return;
+  let e = 1;
+  while (PANTAILA.scrollHeight > PANTAILA.clientHeight + 1 && e > 0.7) {
+    e = Math.round((e - 0.04) * 100) / 100;
+    PANTAILA.style.setProperty('--eskala', e);
+  }
+}
+
+let doituTenporizadorea = null;
+window.addEventListener('resize', () => {
+  clearTimeout(doituTenporizadorea);
+  doituTenporizadorea = setTimeout(() => { izenakDoitu(); ateaDoitu(); }, 150);
+});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { izenakDoitu(); ateaDoitu(); });
 
 function ikurra(izena, klasea){
   const i = el('span', klasea || 'ikurra');
@@ -1256,7 +984,7 @@ function kontagailua(segundoak, ilundu){
   k.appendChild(denbora); k.appendChild(botoia);
   botoia.addEventListener('click', () => {
     let geratzen = segundoak;
-    const egoera = el('span', 'egoera', ilundu ? (MAILA === 'lh1' ? T().begiakItxita : T().isilik) : T().martxan);
+    const egoera = el('span', 'egoera', ilundu ? T().begiakItxita : T().martxan);
     botoia.replaceWith(egoera);
     if (ilundu) PANTAILA.classList.add('isilean');
     const barra = el('div', 'aurrerapena');
@@ -1281,7 +1009,7 @@ function kontagailua(segundoak, ilundu){
   return k;
 }
 function formatua(s){ return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
-function isilunea(){ return EZARPENAK.isilunea[MAILA]; }
+function isilunea(){ return EZARPENAK.isilunea; }
 
 /* ---------- Atea ireki ---------- */
 const PANTAILA = document.getElementById('atea');
@@ -1328,7 +1056,7 @@ function irekiBarrua(iso){
   }
   const a = atea(iso);
   PANTAILA.innerHTML = '';
-  PANTAILA.className = 'atea' + (a.mota === 'kandela' ? ' gaua' : a.mota === 'bilduma' ? ' bilduma-atea' : '');
+  PANTAILA.className = 'atea' + (a.mota === 'kandela' ? ' gaua' : '');
 
   const goia = el('div', 'atea-goia');
   const atzera = el('button', 'atzera'); atzera.type = 'button';
@@ -1352,10 +1080,10 @@ function irekiBarrua(iso){
   if (a.mota === 'testua') testuaMarraztu(a);
   else if (a.mota === 'kandela') kandelaMarraztu(a);
   else if (a.mota === 'keinua') keinuaMarraztu(a);
-  else if (a.mota === 'bilduma') bildumaMarraztu(iso, a);
 
   [...PANTAILA.children].slice(1).forEach((c, i) => { c.classList.add('sarrera'); c.style.setProperty('--i', i); });
   PANTAILA.hidden = false;
+  ateaDoitu();
   document.getElementById('kutxa').setAttribute('aria-hidden', 'true');
   atzera.focus({ preventScroll: true });
 }
@@ -1386,7 +1114,7 @@ function oharraTestua(a){
   const mota = galderaMota(a);
   if (mota === 'erronka') return T().erronkaOharra;
   if (mota === 'familian') return T().jaiOharra;
-  return T().galderaOharra[MAILA];
+  return T().galderaOharra;
 }
 
 function testuaMarraztu(a){
@@ -1429,58 +1157,6 @@ function keinuaMarraztu(a){
   const behea = el('div', 'atea-behea');
   behea.appendChild(el('p', 'segurtasuna', a.segurtasuna || ''));
   if (a.segundoak > 0) behea.appendChild(kontagailua(a.segundoak, false));
-  PANTAILA.appendChild(behea);
-}
-
-function bildumaMarraztu(iso, a){
-  // Aurreko eskola-egunetako ateak (jaiegunak kanpo), ATEAK-etik zuzenean.
-  const ateak = Object.keys(ATEAK).filter(k => k !== '0' && k < iso && !ATEAK[k].jaia).sort();
-  const t = el('div', 'testua');
-  t.appendChild(izenburua(a));
-  if (MAILA === 'lh1') {
-    // 1.–3.: ateak ikonoekin eta asteetako izarrak.
-    const goia = el('div', 'bilduma-goia');
-    goia.appendChild(esaldia(a.testua.replace('{n}', zenbakia(ateak.length))));
-    goia.appendChild(izarLerroa(ASTEAK.filter(x => x.egunak[0] <= iso)));
-    t.appendChild(goia);
-    PANTAILA.appendChild(t);
-    const ul = el('ul', 'ate-txartelak');
-    ateak.forEach((k, i) => {
-      const b = atea(k);
-      const li = el('li', data(k).getDay() === 5 ? 'ostirala' : null);
-      li.style.setProperty('--i', i);
-      li.appendChild(ikurra(b.ikonoa));
-      const izena = el('div');
-      izena.appendChild(el('strong', null, b.izena));
-      izena.appendChild(el('span', 'data', egunLaburra(k)));
-      li.appendChild(izena);
-      ul.appendChild(li);
-    });
-    PANTAILA.appendChild(ul);
-    PANTAILA.appendChild(galderaTxartela(a));
-    const behea = el('div', 'atea-behea');
-    behea.appendChild(el('p', 'segurtasuna', T().galderaOharra[MAILA]));
-    behea.appendChild(kontagailua(isilunea(), true));
-    PANTAILA.appendChild(behea);
-    return;
-  }
-  // 4.–6.: aurreko galderak, aukeratzeko.
-  const galderak = ateak.filter(k => atea(k).galdera);
-  t.appendChild(esaldia(a.testua.replace('{n}', zenbakia(galderak.length))));
-  if (a.azalpena) t.appendChild(el('p', 'iturria', a.azalpena));
-  PANTAILA.appendChild(t);
-  const ul = el('ul', 'bilduma');
-  galderak.forEach((k, i) => {
-    const li = el('li');
-    li.style.setProperty('--i', i);
-    li.appendChild(el('span', null, egunLaburra(k)));
-    li.appendChild(document.createTextNode(atea(k).galdera));
-    ul.appendChild(li);
-  });
-  PANTAILA.appendChild(ul);
-  const behea = el('div', 'atea-behea');
-  behea.appendChild(el('p', 'segurtasuna', a.segurtasuna || ''));
-  behea.appendChild(kontagailua(isilunea(), true));
   PANTAILA.appendChild(behea);
 }
 
@@ -1534,7 +1210,6 @@ testuFinkoak();
 koroa();
 sareta();
 oina();
-if (MAILA_GALDETU) mailaHautua();
 
 // Proiektorean egun osoa irekita uzten bada: gauerdia pasatzean, egutegia egun berrira eguneratu.
 if (!SIMULAZIOA) {
